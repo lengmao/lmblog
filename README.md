@@ -1,0 +1,2 @@
+# lmblog
+default blog
