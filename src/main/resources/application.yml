@@ -1,1 +1,49 @@
+#spring-database
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://106.12.xx.xx:33306/lmblog?useUnicode=true&useSSL=false&characterEncoding=utf8
+    hikari:
+      idle-timeout: 10000
+      minimum-idle: 1
+      maximum-idle: 3
+      maximum-pool-size: 5
+      pool-name: blog_pool
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    cache: false
+  security:
+    user:
+      name: root
+      password: 111111
+
+#server-port
+server:
+  port: 9000
+
+#mybatis-plus
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  type-aliases-package: com.blog.lm.busi.entity.**
+  global-config:
+    banner: false
+    db-config:
+      id-type: 0
+      field-strategy: 1
+      refresh-mapper: true
+      table-underline: true
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
