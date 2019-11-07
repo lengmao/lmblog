@@ -7,6 +7,7 @@ import com.blog.lm.common.result.ResultCode;
 import com.blog.lm.common.result.ResultTool;
 import com.blog.lm.sys.security.MyUser;
 import com.blog.lm.util.JwtTokenUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -24,6 +25,7 @@ import java.util.Map;
  * @Description 登录成功处理
  **/
 @Component
+@Slf4j
 public class AuthSuccessHandler implements AuthenticationSuccessHandler {
 
 
@@ -32,10 +34,9 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
         //TODO 返回该用户拥有的菜单等等
         MyUser user = (MyUser) authentication.getPrincipal();
         Map<String, Object> res = new HashMap<>();
-        res.put("access_token", JwtTokenUtils.generatorToken(user.getUsername(), false));
-        res.put("token_type", "bearer");
-        res.put("username", user.getUsername());
-
+        res.put("Access_Token", JwtTokenUtils.generatorToken(user.getUsername(), false));
+        res.put("Token_Type", "Bearer");
+        res.put("UserName", user.getUsername());
         httpServletResponse.setContentType("text/json;charset=utf-8");
         httpServletResponse.getWriter().write(JSON.toJSONString(res));
     }

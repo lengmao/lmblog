@@ -24,7 +24,7 @@ public class AuthFailureHandler implements AuthenticationFailureHandler {
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
-//返回json数据
+        //返回json数据
         JsonResult result = null;
         if (e instanceof AccountExpiredException) {
             //账号过期

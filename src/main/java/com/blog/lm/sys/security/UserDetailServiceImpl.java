@@ -1,6 +1,7 @@
 package com.blog.lm.sys.security;
 
 import com.blog.lm.busi.entity.SysUser;
+import com.blog.lm.busi.service.SysUserRoleService;
 import com.blog.lm.busi.service.SysUserService;
 import com.blog.lm.common.constant.CommonConstant;
 import lombok.extern.slf4j.Slf4j;
@@ -26,10 +27,13 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
     @Autowired
     SysUserService userService;
+    @Autowired
+    SysUserRoleService userRoleService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         SysUser user = userService.getUserByName(username);
+
         Set<GrantedAuthority> authSet= new LinkedHashSet<>();
         Collection<? extends GrantedAuthority> authorities= AuthorityUtils.createAuthorityList(authSet.toArray(new String[0]));
         return new MyUser(user.getUserName(),user.getUserPass(), CommonConstant.STATUS_NORMAL.equals(user.getStatus()),true,true,true,authorities);

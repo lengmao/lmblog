@@ -15,8 +15,7 @@ import java.util.Date;
 public class JwtTokenUtils {
     public static final String TOKEN_HEADER = "Authorization";
     public static final String TOKEN_PREFIX = "Bearer ";
-
-    private static final String SECRET = "lmjwt";
+    private static final String SECRET = "think";
     private static final String ISS = "lm";
 
     // 过期时间是3600秒，既是1个小时

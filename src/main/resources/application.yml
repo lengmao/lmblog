@@ -5,7 +5,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 123456
-    url: jdbc:mysql://106.12.99.45:33306/lmblog?useUnicode=true&useSSL=false&characterEncoding=utf8
+    url: jdbc:mysql://106.12.xx.xx:33306/lmblog?useUnicode=true&useSSL=false&characterEncoding=utf8
     hikari:
       idle-timeout: 10000
       minimum-idle: 1

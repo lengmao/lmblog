@@ -1,5 +1,11 @@
 package com.blog.lm.sys.handle;
 
+import com.blog.lm.util.JwtTokenUtils;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -8,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * @Author xus
@@ -16,8 +23,25 @@ import java.io.IOException;
  **/
 @Component
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
-    @Override
-    protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
 
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
+        String header = request.getHeader(JwtTokenUtils.TOKEN_HEADER);
+        if (header == null || !header.startsWith(JwtTokenUtils.TOKEN_PREFIX)) {
+            chain.doFilter(request, response);
+            return;
+        }
+
+        SecurityContextHolder.getContext().setAuthentication(getAuthentication(header));
+        chain.doFilter(request,response);
+    }
+
+    private UsernamePasswordAuthenticationToken getAuthentication(String tokenHeader) {
+        String token = tokenHeader.replace(JwtTokenUtils.TOKEN_PREFIX, "");
+        String username = JwtTokenUtils.getUsername(token);
+        if (null != username) {
+            return new UsernamePasswordAuthenticationToken(username, null, new ArrayList<>());
+        }
+        return null;
     }
 }
