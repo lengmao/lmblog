@@ -15,4 +15,11 @@ public interface SysUserService extends IService<SysUser> {
      * @return
      */
     SysUser getUserByName(String username);
+
+    /**
+     * 添加用户
+     * @param sysUser
+     * @return
+     */
+    Boolean saveUser(SysUser sysUser);
 }

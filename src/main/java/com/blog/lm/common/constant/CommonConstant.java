@@ -10,10 +10,10 @@ public interface CommonConstant {
     /**
      * 正常
      */
-    String STATUS_NORMAL = "1";
+    String STATUS_NORMAL = "0";
 
     /**
      * 锁定
      */
-    String STATUS_LOCK = "2";
+    String STATUS_LOCK = "1";
 }
