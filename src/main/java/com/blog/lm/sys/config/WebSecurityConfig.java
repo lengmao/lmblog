@@ -39,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //接口权限配置
         http.authorizeRequests()
-                .antMatchers("/register").permitAll() //不需要权限校验
+                .antMatchers("/register","/api/**").permitAll() //不需要权限校验
                 .anyRequest().authenticated() //剩余全部需要权限校验
                 //登录成功失败
                 .and().formLogin().loginPage("/login").loginProcessingUrl("/postLogin").permitAll().successHandler(authSuccessHandler).failureHandler(authFailureHandler)

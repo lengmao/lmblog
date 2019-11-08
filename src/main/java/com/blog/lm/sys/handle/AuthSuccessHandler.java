@@ -9,6 +9,7 @@ import com.blog.lm.sys.security.MyUser;
 import com.blog.lm.util.JwtTokenUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
@@ -33,6 +34,8 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         //TODO 返回该用户拥有的菜单等等
         MyUser user = (MyUser) authentication.getPrincipal();
+        log.info("用户名：{}",user.getUsername());
+        log.info("用户权限：{}",user.getAuthorities());
         Map<String, Object> res = new HashMap<>();
         res.put("Access_Token", JwtTokenUtils.generatorToken(user.getUsername(), false));
         res.put("Token_Type", "Bearer");

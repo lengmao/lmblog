@@ -1,23 +1,24 @@
 package com.blog.lm.busi.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.util.List;
+
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
 
 /**
- * <p>
- *
- * </p>
- *
  * @author xus
  * @since 2019-11-06
  */
 @Data
 public class SysUser implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     /**
      * id
@@ -78,6 +79,7 @@ public class SysUser implements Serializable {
     /**
      * 1删除，0未删除
      */
+    @TableLogic
     private String delFlag;
 
     /**
@@ -94,6 +96,12 @@ public class SysUser implements Serializable {
      * 修改时间
      */
     private LocalDateTime updateTime;
+
+    /**
+     * 用户角色
+     */
+    @TableField(exist = false)
+    private List<Integer> roles;
 
 
 }

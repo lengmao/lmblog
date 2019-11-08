@@ -3,11 +3,12 @@ package com.blog.lm.busi.mapper;
 import com.blog.lm.busi.entity.SysMenu;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
- * <p>
  * 菜单 Mapper 接口
- * </p>
  *
  * @author xus
  * @since 2019-11-06
@@ -15,4 +16,11 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface SysMenuMapper extends BaseMapper<SysMenu> {
 
+    /**
+     * 通过角色ID获取菜单
+     *
+     * @param roleId
+     * @return
+     */
+    List<SysMenu> getMenusByRoleId(@Param("roleId") Integer roleId);
 }

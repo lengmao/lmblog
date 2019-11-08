@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
 
 /**
@@ -31,6 +33,11 @@ public class SysRole implements Serializable {
     private String role;
 
     /**
+     * 用户编码
+     */
+    private String roleCode;
+
+    /**
      * 描述
      */
     private String description;
@@ -38,6 +45,7 @@ public class SysRole implements Serializable {
     /**
      * 1删除，0未删除
      */
+    @TableLogic
     private String delFlag;
 
     /**

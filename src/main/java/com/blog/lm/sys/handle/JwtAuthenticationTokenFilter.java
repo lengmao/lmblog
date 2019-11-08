@@ -33,7 +33,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         }
 
         SecurityContextHolder.getContext().setAuthentication(getAuthentication(header));
-        chain.doFilter(request,response);
+        chain.doFilter(request, response);
     }
 
     private UsernamePasswordAuthenticationToken getAuthentication(String tokenHeader) {

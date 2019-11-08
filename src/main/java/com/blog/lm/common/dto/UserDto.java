@@ -21,7 +21,7 @@ public class UserDto {
     /**
      * 角色列表
      */
-    private List<SysRole> roleList;
+    private List<Integer> roleList;
 
     /**
      * 权限标识列表
