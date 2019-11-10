@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.lm.system.mapper.SysUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.blog.lm.system.entity.SysUser">
+        <id column="id" property="id"/>
+        <result column="user_name" property="userName"/>
+        <result column="user_display_name" property="userDisplayName"/>
+        <result column="user_pass" property="userPass"/>
+        <result column="user_email" property="userEmail"/>
+        <result column="user_avatar" property="userAvatar"/>
+        <result column="user_desc" property="userDesc"/>
+        <result column="user_site" property="userSite"/>
+        <result column="login_last" property="loginLast"/>
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime"/>
+        <result column="del_flag" property="delFlag"/>
+        <result column="create_by" property="createBy"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_name, user_display_name, user_pass, user_email, user_avatar, user_desc, user_site, login_last, status, create_time, del_flag, create_by, update_by, update_time
+    </sql>
+
+    <!--分页-->
+    <select id="userPage" resultType="com.blog.lm.system.entity.SysUser">
+        SELECT u.* FROM sys_user u
+        <where>
+            <if test="user.userName != null and user.userName.trim() != '' ">
+                AND u.user_name LIKE CONCAT('%',#{user.userName},'%')
+            </if>
+            <if test="user.userDisplayName != null and user.userDisplayName.trim() != '' ">
+                AND u.user_display_name LIKE CONCAT('%',#{user.userDisplayName},'%')
+            </if>
+            AND u.del_flag=0
+        </where>
+        ORDER BY u.id
+    </select>
+
+    <select id="getUserByRoleId" resultType="com.blog.lm.system.entity.SysUser">
+       SELECT u.* FROM
+	    sys_user u
+	    LEFT JOIN sys_user_role ur ON u.id = ur.user_id
+        WHERE u.del_flag = 0
+	    AND ur.role_id =#{roleId}
+    </select>
+
+</mapper>

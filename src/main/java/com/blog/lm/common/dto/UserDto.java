@@ -1,7 +1,6 @@
 package com.blog.lm.common.dto;
 
-import com.blog.lm.busi.entity.SysRole;
-import com.blog.lm.busi.entity.SysUser;
+import com.blog.lm.system.entity.SysUser;
 import lombok.Data;
 
 import java.util.List;
