@@ -32,7 +32,7 @@ server:
 #mybatis-plus
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*Mapper.xml
-  type-aliases-package: com.blog.lm.ststem.entity.**
+  type-aliases-package: com.blog.lm.ststem.entity.**,com.blog.lm.busi.entity.**
   global-config:
     banner: false
     db-config:

@@ -1,4 +1,4 @@
-package com.blog.lm.upload.controller;
+package com.blog.lm.busi.controller;
 
 import cn.hutool.core.io.FileUtil;
 import com.github.tobato.fastdfs.domain.fdfs.StorePath;
@@ -20,7 +20,7 @@ import java.io.InputStream;
  */
 @RestController
 @RequestMapping("/upload")
-public class UploadContrller {
+public class UploadImgController {
     @Resource
     private FastFileStorageClient fastFileStorageClient;
 

@@ -1,4 +1,4 @@
-package com.blog.lm.upload.config;
+package com.blog.lm.busi.config;
 
 import com.github.tobato.fastdfs.FdfsClientConfig;
 import org.springframework.context.annotation.Configuration;
