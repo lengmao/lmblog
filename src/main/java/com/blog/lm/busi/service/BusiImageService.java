@@ -20,4 +20,12 @@ public interface BusiImageService extends IService<Image> {
      * @return
      */
     JsonResult insertImage(Image image);
+
+    /**
+     * 根据图片id删除图片
+     * @param id
+     * @param type
+     * @return
+     */
+    JsonResult delImageById(Integer id,String type);
 }
