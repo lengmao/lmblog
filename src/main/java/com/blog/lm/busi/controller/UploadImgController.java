@@ -1,6 +1,11 @@
 package com.blog.lm.busi.controller;
 
 import cn.hutool.core.io.FileUtil;
+import com.baomidou.mybatisplus.extension.api.R;
+import com.baomidou.mybatisplus.generator.config.IFileCreate;
+import com.blog.lm.common.constant.CommonConstant;
+import com.blog.lm.common.result.JsonResult;
+import com.blog.lm.common.result.ResultCode;
 import com.github.tobato.fastdfs.domain.fdfs.StorePath;
 import com.github.tobato.fastdfs.domain.proto.storage.DownloadByteArray;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
@@ -11,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
