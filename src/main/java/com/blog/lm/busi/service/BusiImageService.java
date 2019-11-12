@@ -14,5 +14,10 @@ import com.blog.lm.common.result.JsonResult;
  * @since 2019-11-12
  */
 public interface BusiImageService extends IService<Image> {
+    /**
+     * 上传图片
+     * @param image
+     * @return
+     */
     JsonResult insertImage(Image image);
 }
