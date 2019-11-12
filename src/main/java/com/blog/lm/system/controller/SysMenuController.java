@@ -1,14 +1,12 @@
 package com.blog.lm.system.controller;
 
 
+import com.blog.lm.system.entity.SysMenu;
 import com.blog.lm.system.service.SysMenuService;
 import com.blog.lm.common.result.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 菜单 接口
@@ -56,8 +54,26 @@ public class SysMenuController {
      */
     @PostMapping("/menu")
     @PreAuthorize("@pms.hasPermission('add_menu')")
-    public JsonResult saveMenu() {
-        return new JsonResult(Boolean.TRUE);
+    public JsonResult saveMenu(@RequestBody SysMenu sysMenu) {
+        return new JsonResult(menuService.saveMenu(sysMenu));
+    }
+
+    /**
+     * 修改菜单
+     * @param sysMenu
+     * @return
+     */
+    @PutMapping("/menu")
+    @PreAuthorize("@pms.hasPermission('edit_menu')")
+    public JsonResult editMenu(@RequestBody SysMenu sysMenu){
+        return new JsonResult(menuService.editMenu(sysMenu));
+    }
+
+
+    @DeleteMapping("/menu/{id}")
+    @PreAuthorize("@pms.hasPermission('delete_menu')")
+    public JsonResult deleteMenu(@PathVariable Integer id){
+        return new JsonResult(menuService.deleteMenu(id));
     }
 
 }
