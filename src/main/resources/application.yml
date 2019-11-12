@@ -46,4 +46,12 @@ mybatis-plus:
     map-underscore-to-camel-case: true
     cache-enabled: false
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-
+#fdfs服务器配置信息
+fdfs:
+  so-timeout:  1501
+  connect-timeout: 601
+  thumb-image:
+    width: 150
+    height: 150
+  tracker-list:
+    - 106.12.99.45:22122
