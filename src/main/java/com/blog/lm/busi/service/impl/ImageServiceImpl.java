@@ -1,33 +1,30 @@
 package com.blog.lm.busi.service.impl;
 
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.blog.lm.busi.controller.UploadImgController;
-import com.blog.lm.busi.entity.Configuration;
+import com.blog.lm.busi.controller.UploadController;
+import com.blog.lm.system.entity.Config;
 import com.blog.lm.busi.entity.Image;
-import com.blog.lm.busi.mapper.BusiImageMapper;
-import com.blog.lm.busi.service.BusiImageService;
+import com.blog.lm.busi.mapper.ImageMapper;
+import com.blog.lm.busi.service.ImageService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.blog.lm.busi.service.BusilConfigurationService;
 import com.blog.lm.common.result.JsonResult;
 import com.blog.lm.common.result.ResultCode;
+import com.blog.lm.system.service.SysConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * <p>
- *  服务实现类
- * </p>
+ * 服务实现类
  *
  * @author xus
  * @since 2019-11-12
  */
 @Service
-public class BusiImageServiceImpl extends ServiceImpl<BusiImageMapper, Image> implements BusiImageService {
+public class ImageServiceImpl extends ServiceImpl<ImageMapper, Image> implements ImageService {
     @Autowired
-    private BusilConfigurationService busilConfigurationService;
+    private SysConfigService configService;
     @Autowired
-    private UploadImgController uploadImgController;
+    private UploadController uploadImgController;
 
     /**
      * 上传图片
@@ -38,7 +35,7 @@ public class BusiImageServiceImpl extends ServiceImpl<BusiImageMapper, Image> im
     @Transactional
     public JsonResult insertImage(Image image) {
         if (baseMapper.insert(image)>0){
-            Configuration pictureServer = busilConfigurationService.getConfigurationByName("PictureServer");
+            Config pictureServer = configService.getConfigurationByName("PictureServer");
             String url=pictureServer.getVariable()+"//"+image.getImgUrl()+"."+image.getSuffix();
             return new JsonResult(Boolean.TRUE,ResultCode.SUCCESS,url);
         }
@@ -61,8 +58,8 @@ public class BusiImageServiceImpl extends ServiceImpl<BusiImageMapper, Image> im
             baseMapper.deleteById(id);
             return new JsonResult(Boolean.TRUE,ResultCode.SUCCESS);
         }
-            image.setDelFlg("1");
-          baseMapper.updateById(image);
+        image.setDelFlg("1");
+        baseMapper.updateById(image);
         return new JsonResult(Boolean.TRUE,ResultCode.SUCCESS);
     }
 }

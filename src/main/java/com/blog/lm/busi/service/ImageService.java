@@ -6,14 +6,11 @@ import com.blog.lm.common.result.JsonResult;
 
 
 /**
- * <p>
- *  服务类
- * </p>
- *
+ *  图片服务类
  * @author xus
  * @since 2019-11-12
  */
-public interface BusiImageService extends IService<Image> {
+public interface ImageService extends IService<Image> {
     /**
      * 上传图片
      * @param image

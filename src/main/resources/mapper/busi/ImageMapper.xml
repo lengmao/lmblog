@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.lm.busi.mapper.ImageMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.blog.lm.busi.entity.Image">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="post_id" property="postId"/>
+        <result column="img_name" property="imgName"/>
+        <result column="img_type" property="imgType"/>
+        <result column="img_url" property="imgUrl"/>
+        <result column="suffix" property="suffix"/>
+        <result column="size" property="size"/>
+        <result column="width" property="width"/>
+        <result column="height" property="height"/>
+        <result column="del_flg" property="delFlg"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_id, post_id, img_name, img_type, img_url, suffix, size, width, height, del_flg, create_time
+    </sql>
+
+</mapper>

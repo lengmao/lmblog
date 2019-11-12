@@ -27,7 +27,7 @@ import java.io.InputStream;
  */
 @RestController
 @RequestMapping("/upload")
-public class UploadImgController {
+public class UploadController {
     @Resource
     private FastFileStorageClient fastFileStorageClient;
 

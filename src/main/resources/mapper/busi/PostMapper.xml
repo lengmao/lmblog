@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.lm.busi.mapper.PostMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.blog.lm.busi.entity.Post">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="menu_id" property="menuId"/>
+        <result column="tag_id" property="tagId"/>
+        <result column="post_title" property="postTitle"/>
+        <result column="cover_image" property="coverImage"/>
+        <result column="post_abstract" property="postAbstract"/>
+        <result column="post_content" property="postContent"/>
+        <result column="post_content_md" property="postContentMd"/>
+        <result column="post_status" property="postStatus"/>
+        <result column="post_view" property="postView"/>
+        <result column="post_like" property="postLike"/>
+        <result column="post_source" property="postSource"/>
+        <result column="allow_comment" property="allowComment"/>
+        <result column="del_flag" property="delFlag"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_id, menu_id, tag_id, post_title, cover_image, post_abstract, post_content, post_content_md, post_status, post_view, post_like, post_source, allow_comment, del_flag, create_time
+    </sql>
+
+</mapper>
