@@ -14,9 +14,24 @@ import java.util.List;
  */
 public interface SysUserService extends IService<SysUser> {
 
+    /**
+     * 获取当前登陆用户
+     * @return
+     */
+    SysUser getCurrentUser();
+
+    /**
+     * 分页
+     *
+     * @param page
+     * @param sysUser
+     * @return
+     */
     IPage<SysUser> userPage(Page<SysUser> page, SysUser sysUser);
+
     /**
      * 通过用户名获取用户详细信息(登录使用)
+     *
      * @param username
      * @return
      */
@@ -24,6 +39,7 @@ public interface SysUserService extends IService<SysUser> {
 
     /**
      * 通过角色id查询用户
+     *
      * @param roleId
      * @return
      */
@@ -31,6 +47,7 @@ public interface SysUserService extends IService<SysUser> {
 
     /**
      * 添加用户
+     *
      * @param sysUser
      * @return
      */
@@ -38,6 +55,7 @@ public interface SysUserService extends IService<SysUser> {
 
     /**
      * 修改用户
+     *
      * @param sysUser
      * @return
      */
@@ -45,6 +63,7 @@ public interface SysUserService extends IService<SysUser> {
 
     /**
      * 删除用户
+     *
      * @param id
      * @return
      */

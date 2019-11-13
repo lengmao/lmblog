@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.blog.lm.busi.entity.Post;
 import com.blog.lm.busi.service.PostService;
 import com.blog.lm.common.result.JsonResult;
-import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,6 +42,7 @@ public class PostController {
      */
     @GetMapping("/api/homePost")
     public JsonResult pageHome(IPage<Post> page){
+
         return new JsonResult(postService.pageHome(page));
     }
 

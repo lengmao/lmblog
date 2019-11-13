@@ -17,6 +17,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.blog.lm.common.constant.CommonConstant;
 import com.blog.lm.common.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -44,14 +45,25 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     private SysUserRoleService userRoleService;
 
     /**
+     * 获取当前登录用户
+     * @return
+     */
+    @Override
+    public SysUser getCurrentUser() {
+        String userName = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return this.getUserByName(userName).getSysUser();
+    }
+
+    /**
      * 用户分页
+     *
      * @param page
      * @param sysUser
      * @return
      */
     @Override
     public IPage<SysUser> userPage(Page<SysUser> page, SysUser sysUser) {
-       return baseMapper.userPage(page,sysUser);
+        return baseMapper.userPage(page, sysUser);
     }
 
     /**
@@ -91,6 +103,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
     /**
      * 同过角色ID查询用户
+     *
      * @param roleId
      * @return
      */
