@@ -2,6 +2,10 @@ package com.blog.lm.busi.entity;
 
 import java.time.LocalDateTime;
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -19,6 +23,7 @@ public class Tag implements Serializable {
     /**
      * ID
      */
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**
@@ -39,6 +44,7 @@ public class Tag implements Serializable {
     /**
      * 逻辑删除标记 0-正常 1-删除
      */
+    @TableLogic
     private String delFlag;
 
 
