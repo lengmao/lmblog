@@ -37,6 +37,7 @@
                 p.post_status = #{post.postStatus}
             </if>
             AND p.del_flag=0
+            AND p.post_status=0
         </where>
         ORDER BY p.create_time DESC
     </select>
@@ -45,6 +46,34 @@
     <select id="pageHome" resultType="com.blog.lm.busi.entity.Post">
         SELECT p.*
         FROM busi_post p
+        WHERE p.post_status = 0
         ORDER BY p.create_time DESC, p.post_view DESC, P.post_like DESC
+    </select>
+
+    <!--用户首页展示自己的文章-->
+    <select id="pageUser" resultType="com.blog.lm.busi.entity.Post">
+        SELECT P.*
+        FROM busi_post
+        WHERE p.user_id = #{userId}
+          AND p.post_status = 0
+        ORDER BY p.create_time DESC
+    </select>
+
+    <!-- 通过文章分类查询文章 -->
+    <select id="getPageByMenuId" resultType="com.blog.lm.busi.entity.Post">
+        SELECT P.*
+        FROM busi_post
+        WHERE p.menu_id = #{menuId}
+          AND p.post_status = 0
+        ORDER BY p.create_time DESC
+    </select>
+
+    <!--通过标签查询文章-->
+    <select id="getPageByTagId" resultType="com.blog.lm.busi.entity.Post">
+        SELECT P.*
+        FROM busi_post
+        WHERE p.tag_id = #{tagId}
+          AND p.post_status = 0
+        ORDER BY p.create_time DESC
     </select>
 </mapper>

@@ -19,4 +19,10 @@ public interface PostMapper extends BaseMapper<Post> {
     IPage pageAll(IPage<Post> page, @Param("post") Post post);
 
     IPage pageHome(IPage<Post> page);
+
+    IPage pageUser(IPage<Post> page, @Param("userId") Integer userId);
+
+    IPage getPageByMenuId(IPage<Post> page, @Param("menuId") Integer menuId);
+
+    IPage getPageByTagId(IPage<Post> page, @Param("tagId") Integer tagId);
 }

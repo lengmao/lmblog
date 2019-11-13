@@ -25,4 +25,39 @@ public interface PostService extends IService<Post> {
      * @return
      */
     IPage pageHome(IPage<Post> page);
+
+    /**
+     * 用户首页展示文章
+     * @param page
+     * @return
+     */
+    IPage pageUser(IPage<Post> page);
+
+    /**
+     * 获取某个菜单下的文章
+     * @param menuId
+     * @return
+     */
+    IPage getPageByMenuId(IPage<Post> page,Integer menuId);
+
+    /**
+     * 获取某个标签下的文章
+     * @param page
+     * @param tagId
+     * @return
+     */
+    IPage getPageByTagId(IPage<Post> page, Integer tagId);
+
+    /**
+     * 添加文章
+     * @param post
+     * @return
+     */
+    Boolean savePost(Post post);
+
+    Boolean editPost(Post post);
+
+    Boolean deletePost(Integer id);
+
+    Post getPostById(Integer id);
 }

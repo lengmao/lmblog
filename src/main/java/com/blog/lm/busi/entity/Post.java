@@ -68,19 +68,19 @@ public class Post implements Serializable {
     private String postContentMd;
 
     /**
-     * 文章状态 1-已发布 2-审核中
+     * 文章状态 0-已发布 1-审核中 2-审核未通过
      */
     private String postStatus;
 
     /**
      * 文章访问量
      */
-    private Integer postView;
+    private Integer postView=0;
 
     /**
      * 文章点赞量
      */
-    private Integer postLike;
+    private Integer postLike=0;
 
     /**
      * 文章来源
