@@ -2,6 +2,7 @@ package com.blog.lm.busi.controller;
 
 import com.blog.lm.busi.entity.Image;
 import com.blog.lm.busi.service.ImageService;
+import com.blog.lm.busi.service.UploadService;
 import com.blog.lm.common.result.JsonResult;
 import com.blog.lm.common.result.ResultCode;
 import lombok.AllArgsConstructor;
@@ -25,7 +26,7 @@ import java.time.ZoneId;
 @AllArgsConstructor
 public class ImageController {
     @Autowired
-    private UploadController uploadController;
+    private UploadService UploadService;
     private final ImageService imageService;
     /**
      * 上传图片
@@ -63,7 +64,7 @@ public class ImageController {
             //高度
             double width = read.getWidth();
             //图片url
-            String save = uploadController.save(file);
+            String save = UploadService.save(file);
             String url = save.substring(0,save.lastIndexOf("."));
             Image image = new Image(null,userId,postId,fileName,type,url,substring,size,width,height,"0", LocalDateTime.now(Clock.system(ZoneId.of("Asia/Shanghai"))));
             return imageService.insertImage(image);

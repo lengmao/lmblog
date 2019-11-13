@@ -15,5 +15,33 @@
         <result column="create_time" property="createTime" />
         <result column="del_flag" property="delFlag" />
     </resultMap>
-
+    <resultMap id="ReplyResultMap" type="com.blog.lm.common.dto.ReplyDto" extends="BaseResultMap" >
+    </resultMap>
+<select id="getReplyByCommentId" parameterType="java.lang.Integer" resultMap="ReplyResultMap">
+  SELECT
+	t1.id,
+t1.comment_id,
+t1.reply_id,
+t1.reply_content,
+t1.from_uid,
+t1.to_uid,
+t1.reply_status,
+t1.create_time,
+t1.reply_type,
+t2.user_display_name as fromName,
+t3.user_display_name as toName,
+t2.user_avatar as fromAvatar,
+t3.user_avatar as toAvatar
+FROM
+	busi_reply t1
+INNER JOIN sys_user t2 ON t1.from_uid=t2.id
+INNER JOIN sys_user t3 ON t1.to_uid=t3.id
+WHERE
+	t1.comment_id = #{commentId}
+AND t1.reply_id = 0
+AND t1.reply_status = 0
+AND t1.del_flag = 0
+AND t2.del_flag=0
+AND t3.del_flag=0
+</select>
 </mapper>

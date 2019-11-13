@@ -1,6 +1,7 @@
 package com.blog.lm.busi.controller;
 
 
+import com.blog.lm.common.result.JsonResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,5 @@ import org.springframework.stereotype.Controller;
 @Controller
 @RequestMapping("/busiReply")
 public class ReplyController {
-
 }
 
