@@ -60,7 +60,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     @Override
     public List<SysMenu> getMenuTreeByRoleId(Integer roleId) {
         List<SysMenu> menus = this.getMenusByRoleId(roleId);
-        return null;
+        return MenuTreeUtil.treeNode(menus);
     }
 
     /**
@@ -98,5 +98,32 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     @Override
     public List<SysMenu> getAllMenuTree() {
         return MenuTreeUtil.treeNode(this.list());
+    }
+
+    /**
+     * 添加菜单
+     *
+     * @param sysMenu
+     * @return
+     */
+    @Override
+    public Boolean saveMenu(SysMenu sysMenu) {
+        if (null != sysMenu.getMenuName()) {
+            return this.save(sysMenu);
+        }
+        return Boolean.FALSE;
+    }
+
+    @Override
+    public Boolean editMenu(SysMenu sysMenu) {
+        if (null != sysMenu.getId() && null != sysMenu.getMenuName()) {
+            return this.updateById(sysMenu);
+        }
+        return Boolean.FALSE;
+    }
+
+    @Override
+    public Boolean deleteMenu(Integer id) {
+        return this.removeById(id);
     }
 }

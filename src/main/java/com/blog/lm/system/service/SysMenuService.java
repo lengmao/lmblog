@@ -40,4 +40,25 @@ public interface SysMenuService extends IService<SysMenu> {
      * @return
      */
     List<SysMenu> getAllMenuTree();
+
+    /**
+     * 添加菜单
+     * @param sysMenu
+     * @return
+     */
+    Boolean saveMenu(SysMenu sysMenu);
+
+    /**
+     * 修改菜单
+     * @param sysMenu
+     * @return
+     */
+    Boolean editMenu(SysMenu sysMenu);
+
+    /**
+     * 删除菜单
+     * @param id
+     * @return
+     */
+    Boolean deleteMenu(Integer id);
 }
