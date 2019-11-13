@@ -1,6 +1,7 @@
 package com.blog.lm.busi.service.impl;
 
-import com.blog.lm.busi.controller.UploadController;
+
+import com.blog.lm.busi.service.UploadService;
 import com.blog.lm.system.entity.Config;
 import com.blog.lm.busi.entity.Image;
 import com.blog.lm.busi.mapper.ImageMapper;
@@ -24,7 +25,7 @@ public class ImageServiceImpl extends ServiceImpl<ImageMapper, Image> implements
     @Autowired
     private SysConfigService configService;
     @Autowired
-    private UploadController uploadImgController;
+    private UploadService UploadService;
 
     /**
      * 上传图片
@@ -54,7 +55,7 @@ public class ImageServiceImpl extends ServiceImpl<ImageMapper, Image> implements
         Image image = baseMapper.selectById(id);
         if (type!=null){
             //删除服务器上面的图片
-            uploadImgController.del(image.getImgUrl()+"."+image.getSuffix());
+            UploadService.del(image.getImgUrl()+"."+image.getSuffix());
             baseMapper.deleteById(id);
             return new JsonResult(Boolean.TRUE,ResultCode.SUCCESS);
         }

@@ -1,14 +1,13 @@
-package com.blog.lm.busi.controller;
+package com.blog.lm.busi.service;
 
 import cn.hutool.core.io.FileUtil;
 import com.github.tobato.fastdfs.domain.fdfs.StorePath;
 import com.github.tobato.fastdfs.domain.proto.storage.DownloadByteArray;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
 import javax.annotation.Resource;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -17,9 +16,8 @@ import java.io.InputStream;
 /**
  * 操作图片服务器接口
  */
-@RestController
-@RequestMapping("/upload")
-public class UploadController {
+@Component
+public class UploadService {
     @Resource
     private FastFileStorageClient fastFileStorageClient;
 
@@ -29,7 +27,6 @@ public class UploadController {
      * @return
      * @throws IOException
      */
-    @PostMapping("/upload")
     public String save(MultipartFile file) throws IOException {
         byte[] bytes = file.getBytes();
         InputStream inputStream = new ByteArrayInputStream(bytes);
@@ -43,7 +40,6 @@ public class UploadController {
      * @param uri
      * @return
      */
-    @PostMapping("/del")
     public String del(@RequestParam String uri) {
         StorePath storePath = fromUri(uri);
         fastFileStorageClient.deleteFile(storePath.getGroup(), storePath.getPath());

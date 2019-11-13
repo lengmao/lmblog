@@ -61,6 +61,13 @@
             <artifactId>lombok</artifactId>
             <version>1.18.8</version>
         </dependency>
+        <!-- 谷歌创建集合工具 -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>28.1-jre</version>
+        </dependency>
+
         <!--fastdfs 操作依赖 -->
         <dependency>
             <groupId>com.github.tobato</groupId>
