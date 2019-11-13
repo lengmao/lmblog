@@ -2,8 +2,10 @@ package com.blog.lm.busi.mapper;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.blog.lm.busi.entity.Post;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 文章信息表 Mapper 接口
@@ -14,4 +16,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface PostMapper extends BaseMapper<Post> {
 
+    IPage pageAll(IPage<Post> page, @Param("post") Post post);
+
+    IPage pageHome(IPage<Post> page);
 }

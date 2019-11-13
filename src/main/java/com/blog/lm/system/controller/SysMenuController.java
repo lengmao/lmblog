@@ -43,7 +43,7 @@ public class SysMenuController {
      * @param roleId
      * @return
      */
-    @GetMapping("/menus/roleMenuTree/{roleId}")
+    @GetMapping("/menu/roleMenuTree/{roleId}")
     @PreAuthorize("@pms.hasPermission('edit_role')")
     public JsonResult getMenuTreeByRoleId(@PathVariable Integer roleId){
         return new JsonResult(menuService.getMenuTreeByRoleId(roleId));

@@ -4,21 +4,22 @@ import java.time.LocalDateTime;
 import java.io.Serializable;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 
 /**
  * 文章信息表
+ *
  * @author xus
  * @since 2019-11-12
  */
 @Data
 public class Post implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     /**
      * ID
@@ -102,5 +103,10 @@ public class Post implements Serializable {
      */
     private LocalDateTime createTime;
 
+    /**
+     * 评论数量
+     */
+    @TableField(exist = false)
+    private Integer postComment;
 
 }
