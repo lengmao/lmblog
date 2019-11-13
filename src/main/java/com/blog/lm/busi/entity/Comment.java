@@ -3,10 +3,7 @@ package com.blog.lm.busi.entity;
 import java.time.LocalDateTime;
 import java.io.Serializable;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -17,6 +14,7 @@ import lombok.experimental.Accessors;
  * @since 2019-11-12
  */
 @Data
+@TableName("busi_comment")
 public class Comment implements Serializable {
 
     private static final long serialVersionUID=1L;

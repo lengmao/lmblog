@@ -25,4 +25,11 @@ public interface ReplyMapper extends BaseMapper<Reply> {
      * @return
      */
     List<ReplyDto> getReplyByCommentId(@Param("commentId") Integer commentId);
+
+    /**
+     * 查看回复下面的回复
+     * @param replyId
+     * @return
+     */
+    ReplyDto getReplyByReplyId(@Param("replyId")Integer replyId);
 }

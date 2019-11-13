@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.io.Serializable;
 
 import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -19,6 +20,7 @@ import lombok.experimental.Accessors;
  * @since 2019-11-13
  */
 @Data
+@TableName("busi_reply")
 public class Reply implements Serializable {
 
     private static final long serialVersionUID=1L;
