@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.lm.busi.mapper.ReplyMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.blog.lm.busi.entity.Reply">
+        <id column="id" property="id" />
+        <result column="comment_id" property="commentId" />
+        <result column="reply_id" property="replyId" />
+        <result column="reply_type" property="replyType" />
+        <result column="reply_content" property="replyContent" />
+        <result column="from_uid" property="fromUid" />
+        <result column="to_uid" property="toUid" />
+        <result column="reply_status" property="replyStatus" />
+        <result column="create_time" property="createTime" />
+        <result column="del_flag" property="delFlag" />
+    </resultMap>
+
+</mapper>

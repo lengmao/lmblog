@@ -6,19 +6,14 @@
     <resultMap id="BaseResultMap" type="com.blog.lm.busi.entity.Comment">
         <id column="id" property="id"/>
         <result column="post_id" property="postId"/>
-        <result column="user_id" property="userId"/>
+        <result column="from_uid" property="fromUid"/>
         <result column="comment_content" property="commentContent"/>
-        <result column="comment_author_avatar" property="commentAuthorAvatar"/>
-        <result column="comment_author_url" property="commentAuthorUrl"/>
         <result column="comment_status" property="commentStatus"/>
         <result column="comment_type" property="commentType"/>
         <result column="create_time" property="createTime"/>
-        <result column="del_falg" property="delFalg"/>
+        <result column="del_flag" property="delFlag"/>
+        <result column="remarks" property="remarks"/>
     </resultMap>
 
-    <!-- 通用查询结果列 -->
-    <sql id="Base_Column_List">
-        id, post_id, user_id, comment_content, comment_author_avatar, comment_author_url, comment_status, comment_type, create_time, del_falg
-    </sql>
 
 </mapper>

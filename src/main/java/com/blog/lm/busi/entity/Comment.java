@@ -29,22 +29,13 @@ public class Comment implements Serializable {
     /**
      * 发布评论用户id
      */
-    private Integer userId;
+    private Integer fromUid;
 
     /**
      * 评论内容
      */
     private String commentContent;
 
-    /**
-     * 评论人头像
-     */
-    private String commentAuthorAvatar;
-
-    /**
-     * 评论人主页
-     */
-    private String commentAuthorUrl;
 
     /**
      * 评论状态 0-正常 1-待审核
@@ -64,7 +55,11 @@ public class Comment implements Serializable {
     /**
      * 逻辑删除标记 0-正常 1-删除
      */
-    private String delFalg;
+    private String delFlag;
 
+    /**
+     * 备注信息
+     */
+    private String remarks;
 
 }
