@@ -107,5 +107,10 @@ public class PostController {
         return new JsonResult(postService.getPostById(id));
     }
 
+    @GetMapping("/api/post/likeHandle/{id}")
+    public JsonResult likeHandle(@PathVariable Integer id){
+        return new JsonResult(postService.likeHandle(id));
+    }
+
 }
 

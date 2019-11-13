@@ -1,5 +1,6 @@
 package com.blog.lm.busi.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.blog.lm.busi.entity.Tag;
 import com.blog.lm.busi.mapper.TagMapper;
@@ -14,4 +15,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class TagServiceImpl extends ServiceImpl<TagMapper, Tag> implements TagService {
 
+    @Override
+    public IPage pageAll(IPage<Tag> page, Tag tag) {
+        return null;
+    }
 }

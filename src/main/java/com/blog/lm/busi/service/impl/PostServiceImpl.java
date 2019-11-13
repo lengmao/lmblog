@@ -113,8 +113,16 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
     @Override
     public Post getPostById(Integer id) {
         Post post = this.getById(id);
-        post.setPostLike(+1);
+        post.setPostView(+1);
         this.updateById(post);
         return this.getById(id);
+    }
+
+    @Override
+    public Boolean likeHandle(Integer id) {
+        Post post = this.getById(id);
+        post.setPostLike(+1);
+        this.updateById(post);
+        return Boolean.TRUE;
     }
 }

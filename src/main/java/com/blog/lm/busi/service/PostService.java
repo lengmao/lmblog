@@ -60,4 +60,6 @@ public interface PostService extends IService<Post> {
     Boolean deletePost(Integer id);
 
     Post getPostById(Integer id);
+
+    Boolean likeHandle(Integer id);
 }
