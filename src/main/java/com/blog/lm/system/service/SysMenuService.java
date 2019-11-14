@@ -35,6 +35,8 @@ public interface SysMenuService extends IService<SysMenu> {
      */
     List<SysMenu> getMenuTree();
 
+    List<SysMenu> getUserMenuTree();
+
     /**
      * 获取所有菜单树
      * @return
@@ -61,4 +63,6 @@ public interface SysMenuService extends IService<SysMenu> {
      * @return
      */
     Boolean deleteMenu(Integer id);
+
+
 }

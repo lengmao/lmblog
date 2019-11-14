@@ -20,12 +20,22 @@ public class SysMenuController {
     SysMenuService menuService;
 
     /**
-     * 获取未登录或已登录用户的菜单树
+     * 获取未登录状态的菜单树
      * @return
      */
     @GetMapping("/api/menuTree")
     public JsonResult getMenuTree() {
         return new JsonResult(menuService.getMenuTree());
+    }
+
+    /**
+     * 获取登录状态用户的菜单树
+     * @return
+     */
+    @GetMapping("/menu/userMenuTree")
+    @PreAuthorize("@pms.hasPermission('get_user_menu')")
+    public JsonResult getUserMenuTree(){
+        return new JsonResult(menuService.getUserMenuTree());
     }
 
     /**

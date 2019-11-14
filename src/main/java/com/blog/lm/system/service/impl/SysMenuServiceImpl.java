@@ -77,17 +77,20 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
             List<SysMenu> menus = this.getMenusByRoleId(role.getId());
             return MenuTreeUtil.treeNode(menus);
         }
-        //如果已经登录，按用户所赋予的角色查出权限
-        else {
-            UserDto userDto = sysUserService.getUserByName(userName);
-            Set<SysMenu> setMenu = new LinkedHashSet<>();
-            userDto.getRoleList().stream().forEach(r -> {
-                List<SysMenu> temps = sysMenuService.getMenusByRoleId(r);
-                setMenu.addAll(temps);
-            });
-            List<SysMenu> menus = setMenu.stream().distinct().collect(Collectors.toList());
-            return MenuTreeUtil.treeNode(menus);
-        }
+        return null;
+    }
+
+    @Override
+    public List<SysMenu> getUserMenuTree() {
+        String userName = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserDto userDto = sysUserService.getUserByName(userName);
+        Set<SysMenu> setMenu = new LinkedHashSet<>();
+        userDto.getRoleList().stream().forEach(r -> {
+            List<SysMenu> temps = sysMenuService.getMenusByRoleId(r);
+            setMenu.addAll(temps);
+        });
+        List<SysMenu> menus = setMenu.stream().distinct().collect(Collectors.toList());
+        return MenuTreeUtil.treeNode(menus);
     }
 
     /**
