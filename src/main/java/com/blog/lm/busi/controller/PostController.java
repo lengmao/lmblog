@@ -102,11 +102,21 @@ public class PostController {
         return new JsonResult(postService.deletePost(id));
     }
 
+    /**
+     * 点击文章标题获取文章
+     * @param id
+     * @return
+     */
     @GetMapping("/api/post/getById/{id}")
     public JsonResult getPostById(@PathVariable Integer id) {
         return new JsonResult(postService.getPostById(id));
     }
 
+    /**
+     * 点赞后更新文章点赞信息
+     * @param id
+     * @return
+     */
     @GetMapping("/api/post/likeHandle/{id}")
     public JsonResult likeHandle(@PathVariable Integer id){
         return new JsonResult(postService.likeHandle(id));

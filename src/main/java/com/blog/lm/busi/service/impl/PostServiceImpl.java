@@ -85,7 +85,7 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
     public Boolean savePost(Post post) {
         Integer userId = userService.getCurrentUser().getId();
         if (post.getUserId().equals(userId)) {
-            post.setPostStatus("2");
+            post.setPostStatus("1");
             return this.save(post);
         }
         return Boolean.FALSE;

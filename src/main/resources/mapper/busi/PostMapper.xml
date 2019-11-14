@@ -37,7 +37,6 @@
                 p.post_status = #{post.postStatus}
             </if>
             AND p.del_flag=0
-            AND p.post_status=0
         </where>
         ORDER BY p.create_time DESC
     </select>
