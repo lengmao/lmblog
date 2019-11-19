@@ -1,13 +1,17 @@
 package com.blog.lm.util;
 
 import io.minio.MinioClient;
-import io.minio.errors.InvalidEndpointException;
-import io.minio.errors.InvalidPortException;
+import io.minio.errors.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
+import org.xmlpull.v1.XmlPullParserException;
+
 import javax.imageio.ImageIO;
+import java.io.IOException;
 import java.io.InputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.util.Random;
 /**
@@ -46,7 +50,7 @@ public class MinioUtil {
      * 获取minio客户端实例
      * @return
      */
-    private static MinioClient getMinioClient(){
+    public static MinioClient getMinioClient(){
         return MinioClientHolder.minioClient;
     }
 
@@ -57,7 +61,7 @@ public class MinioUtil {
      * @param muFiles
      * @return
      */
-    public static String uploadFiles(MultipartFile... muFiles) {
+    public static String uploadFiles(MultipartFile... muFiles) throws IOException, XmlPullParserException, NoSuchAlgorithmException, InvalidKeyException, InvalidExpiresRangeException, ErrorResponseException, NoResponseException, InvalidBucketNameException, InsufficientDataException, InternalException {
         if (muFiles.length<1){
             throw new RuntimeException("上传文件为空！");
         }
@@ -76,7 +80,7 @@ public class MinioUtil {
      * @param muFile
      * @return
      */
-    public static String uploadFile(MultipartFile muFile){
+    public static String uploadFile(MultipartFile muFile) throws IOException, InvalidKeyException, NoSuchAlgorithmException, InsufficientDataException, InvalidExpiresRangeException, InternalException, NoResponseException, InvalidBucketNameException, XmlPullParserException, ErrorResponseException {
         String fileName = getFilePathName(muFile,false);
         try {
             MinioClient minioClient = getMinioClient();
@@ -99,7 +103,10 @@ public class MinioUtil {
             log.error("文件上传失败",e);
             throw new RuntimeException("文件上传失败");
         }
-        return OOS_URL_READ+"/"+BUCKET_NAME+fileName;
+        //生成网络连接
+        MinioClient minioClient = MinioUtil.getMinioClient();
+        return minioClient.presignedGetObject(BUCKET_NAME,fileName);
+       /* return OOS_URL_READ+"/"+BUCKET_NAME+fileName;*/
     }
 
     /**

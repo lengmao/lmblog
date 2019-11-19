@@ -6,13 +6,18 @@ import com.blog.lm.busi.service.UploadService;
 import com.blog.lm.common.result.JsonResult;
 import com.blog.lm.common.result.ResultCode;
 import com.blog.lm.util.MinioUtil;
+import io.minio.errors.*;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.xmlpull.v1.XmlPullParserException;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.time.Clock;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -87,10 +92,5 @@ public class ImageController {
             return new JsonResult(Boolean.FALSE,ResultCode.PARAM_NOT_VALID);
         }
         return imageService.delImageById(id,type);
-    }
-    @PostMapping("/test")
-    public void  test(MultipartFile file){
-        String s = MinioUtil.uploadFile(file);
-        System.out.println(s);
     }
 }
