@@ -5,6 +5,7 @@ import com.blog.lm.busi.service.ImageService;
 import com.blog.lm.busi.service.UploadService;
 import com.blog.lm.common.result.JsonResult;
 import com.blog.lm.common.result.ResultCode;
+import com.blog.lm.util.MinioUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -86,5 +87,10 @@ public class ImageController {
             return new JsonResult(Boolean.FALSE,ResultCode.PARAM_NOT_VALID);
         }
         return imageService.delImageById(id,type);
+    }
+    @PostMapping("/test")
+    public void  test(MultipartFile file){
+        String s = MinioUtil.uploadFile(file);
+        System.out.println(s);
     }
 }
