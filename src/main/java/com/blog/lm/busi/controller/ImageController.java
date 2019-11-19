@@ -93,4 +93,24 @@ public class ImageController {
         }
         return imageService.delImageById(id,type);
     }
+
+    /**
+     * 上传视频、文件 生成网络链接
+     * @param file
+     * @return
+     * @throws IOException
+     * @throws XmlPullParserException
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeyException
+     * @throws InvalidExpiresRangeException
+     * @throws ErrorResponseException
+     * @throws NoResponseException
+     * @throws InvalidBucketNameException
+     * @throws InsufficientDataException
+     * @throws InternalException
+     */
+    @PostMapping("/uploadfile")
+    public String uploadfile(MultipartFile file) throws IOException, XmlPullParserException, NoSuchAlgorithmException, InvalidKeyException, InvalidExpiresRangeException, ErrorResponseException, NoResponseException, InvalidBucketNameException, InsufficientDataException, InternalException {
+       return MinioUtil.uploadFile(file);
+    }
 }
