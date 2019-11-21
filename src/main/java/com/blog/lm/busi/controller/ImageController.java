@@ -5,13 +5,19 @@ import com.blog.lm.busi.service.ImageService;
 import com.blog.lm.busi.service.UploadService;
 import com.blog.lm.common.result.JsonResult;
 import com.blog.lm.common.result.ResultCode;
+import com.blog.lm.util.MinioUtil;
+import io.minio.errors.*;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.xmlpull.v1.XmlPullParserException;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.time.Clock;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -86,5 +92,25 @@ public class ImageController {
             return new JsonResult(Boolean.FALSE,ResultCode.PARAM_NOT_VALID);
         }
         return imageService.delImageById(id,type);
+    }
+
+    /**
+     * 上传视频、文件 生成网络链接
+     * @param file
+     * @return
+     * @throws IOException
+     * @throws XmlPullParserException
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeyException
+     * @throws InvalidExpiresRangeException
+     * @throws ErrorResponseException
+     * @throws NoResponseException
+     * @throws InvalidBucketNameException
+     * @throws InsufficientDataException
+     * @throws InternalException
+     */
+    @PostMapping("/uploadfile")
+    public String uploadfile(MultipartFile file) throws IOException, XmlPullParserException, NoSuchAlgorithmException, InvalidKeyException, InvalidExpiresRangeException, ErrorResponseException, NoResponseException, InvalidBucketNameException, InsufficientDataException, InternalException {
+       return MinioUtil.uploadFile(file);
     }
 }
