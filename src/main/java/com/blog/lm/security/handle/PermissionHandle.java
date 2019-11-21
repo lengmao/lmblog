@@ -1,7 +1,7 @@
 package com.blog.lm.security.handle;
 
-import com.blog.lm.system.service.SysUserService;
 import com.blog.lm.common.dto.UserDto;
+import com.blog.lm.system.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;

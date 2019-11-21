@@ -36,7 +36,7 @@ public enum ResultCode {
     USER_ACCOUNT_USE_BY_OTHERS(2009, "账号在异地登录"),
 
     /* 业务错误 */
-    NO_PERMISSION(3001, "没有权限");
+    NO_PERMISSION(3001, "没有此权限");
     private Integer code;
     private String message;
 

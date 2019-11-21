@@ -1,19 +1,11 @@
 package com.blog.lm.security.handle;
 
-import com.alibaba.fastjson.JSON;
-import com.blog.lm.security.security.MyUser;
-import com.blog.lm.util.JwtTokenUtils;
+import cn.hutool.core.collection.CollUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationListener;
+import org.springframework.security.authentication.event.AuthenticationSuccessEvent;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @Author xus
@@ -22,20 +14,18 @@ import java.util.Map;
  **/
 @Component
 @Slf4j
-public class AuthSuccessHandler implements AuthenticationSuccessHandler {
-
+public class AuthSuccessHandler implements ApplicationListener<AuthenticationSuccessEvent> {
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-        //TODO 返回该用户拥有的菜单等等
-        MyUser user = (MyUser) authentication.getPrincipal();
-        log.info("用户名：{}",user.getUsername());
-        log.info("用户权限：{}",user.getAuthorities());
-        Map<String, Object> res = new HashMap<>();
-        res.put("Access_Token", JwtTokenUtils.generatorToken(user.getUsername(), false));
-        res.put("Token_Type", "Bearer");
-        res.put("UserName", user.getUsername());
-        httpServletResponse.setContentType("text/json;charset=utf-8");
-        httpServletResponse.getWriter().write(JSON.toJSONString(res));
+    public void onApplicationEvent(AuthenticationSuccessEvent event) {
+        Authentication authentication = (Authentication) event.getSource();
+        if (CollUtil.isNotEmpty(authentication.getAuthorities())) {
+            handle(authentication);
+        }
+    }
+
+    public void handle(Authentication authentication) {
+        log.info("用户：{} 登录成功", authentication.getName());
+        log.info("权限：{}",authentication.getAuthorities());
     }
 }

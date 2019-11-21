@@ -4,8 +4,8 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: 123456
-    url: jdbc:mysql://106.12.99.45:33306/lmblog?useUnicode=true&useSSL=false&characterEncoding=utf8
+    password: xusheng#
+    url: jdbc:mysql://39.107.32.198:3306/lmblog?useUnicode=true&useSSL=false&characterEncoding=utf8
     hikari:
       idle-timeout: 10000
       minimum-idle: 1
@@ -20,10 +20,10 @@ spring:
     servlet:
       content-type: text/html
     cache: false
-  security:
-    user:
-      name: root
-      password: 111111
+  redis:
+    port: 6379
+    host: 106.12.99.45
+    database: 2
 
 #server-port
 server:
@@ -55,3 +55,9 @@ fdfs:
     height: 150
   tracker-list:
     - 106.12.99.45:22122
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG

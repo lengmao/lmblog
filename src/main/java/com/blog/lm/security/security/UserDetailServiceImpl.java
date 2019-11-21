@@ -1,10 +1,11 @@
 package com.blog.lm.security.security;
 
+import com.blog.lm.common.constant.CommonConstant;
+import com.blog.lm.common.constant.SecurityConstant;
+import com.blog.lm.common.dto.UserDto;
 import com.blog.lm.system.entity.SysUser;
 import com.blog.lm.system.service.SysUserRoleService;
 import com.blog.lm.system.service.SysUserService;
-import com.blog.lm.common.constant.CommonConstant;
-import com.blog.lm.common.dto.UserDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,7 +15,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * @Author xus
@@ -45,7 +48,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
             authSet.addAll(userDto.getPermissions());
         }
         Collection<? extends GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(authSet.toArray(new String[0]));
-        return new MyUser(user.getUserName(), user.getUserPass(), CommonConstant.STATUS_NORMAL.equals(user.getStatus()),
+        return new MyUser(user.getUserName(), SecurityConstant.BCRYPT+user.getUserPass(), CommonConstant.STATUS_NORMAL.equals(user.getStatus()),
                 true, true, true, authorities);
     }
 }

@@ -4,6 +4,9 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.blog.lm.common.constant.CommonConstant;
+import com.blog.lm.common.dto.UserDto;
 import com.blog.lm.system.entity.SysMenu;
 import com.blog.lm.system.entity.SysRole;
 import com.blog.lm.system.entity.SysUser;
@@ -13,12 +16,10 @@ import com.blog.lm.system.service.SysMenuService;
 import com.blog.lm.system.service.SysRoleService;
 import com.blog.lm.system.service.SysUserRoleService;
 import com.blog.lm.system.service.SysUserService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.blog.lm.common.constant.CommonConstant;
-import com.blog.lm.common.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -32,11 +33,9 @@ import java.util.stream.Collectors;
  * @since 2019-11-06
  */
 @Service
-
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
 
-    @Autowired
-    private BCryptPasswordEncoder ENCODER;
+    private static final PasswordEncoder ENCODER = new BCryptPasswordEncoder();
     @Autowired
     private SysRoleService roleService;
     @Autowired
@@ -46,6 +45,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
     /**
      * 获取当前登录用户
+     *
      * @return
      */
     @Override
