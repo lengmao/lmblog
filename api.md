@@ -1,26 +1,47 @@
 ###<- api - >
 ####一、系统管理
+##### 0、验证码获取
+*接口地址*： /api/code <br />
+*接口描述*： 验证码获取
+#####请求头设置
+```
+```
+#####   请求参数：  
+```
+```  
+method: get
+  
+#####   返回格式：  
+```
+jpg
+```  
+***  
 ##### 1.登录(login)
-*接口地址*： /postLogin <br />
+*接口地址*： /oauth/token <br />
 *接口描述*： 用户登录接口
 #####请求头设置
 ```
-无
+Authorization : Basic d2Vic2l0ZTp3ZWJzaXRl
 ```
 #####   请求参数：  
 ```
 username : username
 password : pwd
+grant_type:password
+scope : server 
+codeStr: code
 ```  
 method: post
   
 #####   返回格式：  
 ```json  
 {
-  "Token_Type": "Bearer",
-  "UserName": "root",
-  "Access_Token": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJsbSIsInN1YiI6InJvb3QiLCJpYXQiOjE1NzM3MDI2MTcsImV4cCI6MTU3MzcwNjIxN30.erHYeGiyPpD3177dy8Ow9PEcMY4i5F5pRLRcQQJ-FqUy8TligjGL-sa9lzKiw9sqPelu293EtFqlM-q-p4Qseg"
- }
+    "access_token": "cf97b7ca-2648-4d42-b285-32267b390e58",
+    "token_type": "bearer",
+    "refresh_token": "779a93ec-ba46-4241-b582-e26cb1f69ce1",
+    "expires_in": 39897,
+    "scope": "server"
+}
 ```  
 ***  
 ##### 2.请求页面菜单列表(此接口不需要登录，开放)
