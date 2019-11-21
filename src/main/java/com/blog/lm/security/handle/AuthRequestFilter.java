@@ -31,7 +31,7 @@ import java.util.ArrayList;
  **/
 @Component
 public class AuthRequestFilter extends OncePerRequestFilter {
-    private final String DEFAULT_CODE_PATH = "/api/code";
+    private final String DEFAULT_CODE_PATH = "/api";
     @Autowired
     TokenStore tokenStore;
     @Autowired
@@ -42,12 +42,12 @@ public class AuthRequestFilter extends OncePerRequestFilter {
         String header = request.getHeader(AuthTokenEndpoint.TOKEN_HEADER);
         if (header == null || !header.startsWith(AuthTokenEndpoint.TOKEN_PREFIX)) {
             String url = request.getRequestURI();
-            if (url.equals(DEFAULT_CODE_PATH)) {
+            if (url.startsWith(DEFAULT_CODE_PATH)) {
                 chain.doFilter(request, response);
                 return;
             } else {
                 try {
-                    validate(request);
+                    validate(request.getParameter("codeStr"));
                     chain.doFilter(request, response);
                     return;
                 } catch (Exception e) {
@@ -80,10 +80,9 @@ public class AuthRequestFilter extends OncePerRequestFilter {
     /**
      * 登录过程校验验证码
      *
-     * @param request
+     * @param imageCode
      */
-    private void validate(HttpServletRequest request) throws Exception {
-        String imageCode = request.getParameter("codeStr");
+    public void validate(String imageCode) throws Exception {
 
         if (StrUtil.isBlank(imageCode)) {
             throw new ValidateCodeException("验证码不能为空");

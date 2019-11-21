@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
  * @since 2019-11-06
  */
 @RestController
-@RequestMapping("/user")
 public class SysUserController {
 
     @Autowired
@@ -24,34 +23,47 @@ public class SysUserController {
 
     /**
      * 用户分页
+     *
      * @param page
      * @param sysUser
      * @return
      */
-    @GetMapping("/page")
+    @GetMapping("/user/page")
     @PreAuthorize("@pms.hasPermission('user_page')")
-    public JsonResult userPage(Page<SysUser> page, SysUser sysUser){
-        return new JsonResult(userService.userPage(page,sysUser));
+    public JsonResult userPage(Page<SysUser> page, SysUser sysUser) {
+        return new JsonResult(userService.userPage(page, sysUser));
     }
 
     /**
      * 通过ID查询用户
+     *
      * @param id
      * @return
      */
-    @GetMapping("/{id}")
+    @GetMapping("/user/{id}")
     @PreAuthorize("@pms.hasPermission('get_user')")
     public JsonResult getUserById(@PathVariable Integer id) {
         return new JsonResult(userService.getById(id));
     }
 
+    /**
+     * 用户注册
+     *
+     * @param sysUser
+     * @param codeStr
+     * @return
+     */
+    @PostMapping("/api/register")
+    public JsonResult registerUser(@RequestBody SysUser sysUser, @RequestParam String codeStr) throws Exception {
+        return new JsonResult(userService.registerUser(sysUser, codeStr));
+    }
 
     /**
      * 添加用户
      *
      * @return
      */
-    @PostMapping
+    @PostMapping("/user")
     @PreAuthorize("@pms.hasPermission('add_user')")
     public JsonResult save(@RequestBody SysUser sysUser) {
         return new JsonResult(userService.saveUser(sysUser));
@@ -60,10 +72,11 @@ public class SysUserController {
 
     /**
      * 修改用户
+     *
      * @param sysUser
      * @return
      */
-    @PutMapping
+    @PutMapping("/user")
     @PreAuthorize("@pms.hasPermission('edit_user')")
     public JsonResult edit(@RequestBody SysUser sysUser) {
         return new JsonResult(userService.editUser(sysUser));
@@ -71,11 +84,12 @@ public class SysUserController {
 
     /**
      * 删除用户
+     *
      * @return
      */
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/user/{id}")
     @PreAuthorize("@pms.hasPermission('delete_user')")
-    public JsonResult delete(@PathVariable Integer id){
+    public JsonResult delete(@PathVariable Integer id) {
         return new JsonResult(userService.removeUser(id));
     }
 

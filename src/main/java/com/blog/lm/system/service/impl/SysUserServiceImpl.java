@@ -7,6 +7,9 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.blog.lm.common.constant.CommonConstant;
 import com.blog.lm.common.dto.UserDto;
+import com.blog.lm.common.exception.CheckedException;
+import com.blog.lm.common.result.JsonResult;
+import com.blog.lm.security.handle.AuthRequestFilter;
 import com.blog.lm.system.entity.SysMenu;
 import com.blog.lm.system.entity.SysRole;
 import com.blog.lm.system.entity.SysUser;
@@ -17,6 +20,7 @@ import com.blog.lm.system.service.SysRoleService;
 import com.blog.lm.system.service.SysUserRoleService;
 import com.blog.lm.system.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -36,6 +40,9 @@ import java.util.stream.Collectors;
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
 
     private static final PasswordEncoder ENCODER = new BCryptPasswordEncoder();
+    private static final String DEFAULT_ROLE = "ROLE_USER";
+    @Autowired
+    AuthRequestFilter requestFilter;
     @Autowired
     private SysRoleService roleService;
     @Autowired
@@ -136,6 +143,34 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     }
 
     /**
+     * 注册用户
+     *
+     * @param sysUser
+     * @param imageCode
+     * @return
+     */
+    @Override
+    public Boolean registerUser(SysUser sysUser, String imageCode) {
+        try {
+            requestFilter.validate(imageCode);
+        } catch (Exception e) {
+            throw new CheckedException(e.getMessage());
+        }
+        sysUser.setDelFlag(CommonConstant.STATUS_NORMAL);
+        sysUser.setCreateTime(LocalDateTime.now());
+        sysUser.setStatus(CommonConstant.STATUS_NORMAL);
+        sysUser.setUserPass(ENCODER.encode(sysUser.getUserPass()));
+        baseMapper.insert(sysUser);
+        //给注册用户默认角色
+        SysRole sysRole = roleService.getOne(Wrappers.<SysRole>query().lambda().eq(SysRole::getRoleCode, DEFAULT_ROLE));
+        SysUserRole userRole = new SysUserRole();
+        userRole.setUserId(sysUser.getId());
+        userRole.setRoleId(sysRole.getId());
+        userRoleService.save(userRole);
+        return Boolean.TRUE;
+    }
+
+    /**
      * 修改用户
      *
      * @param sysUser
@@ -171,4 +206,5 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         this.removeById(id);
         return Boolean.TRUE;
     }
+
 }

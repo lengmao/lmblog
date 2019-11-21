@@ -69,4 +69,11 @@ public interface SysUserService extends IService<SysUser> {
      */
     Boolean removeUser(Integer id);
 
+    /**
+     * 注册用户
+     * @param sysUser
+     * @param imageCode
+     * @return
+     */
+    Boolean registerUser(SysUser sysUser, String imageCode) throws Exception;
 }
