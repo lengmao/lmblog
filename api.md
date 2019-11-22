@@ -16,6 +16,24 @@ method: get
 jpg
 ```  
 ***  
+##### 0、注册用户
+*接口地址*： /api/register <br />
+*接口描述*： 注册用户
+#####请求头设置
+```
+```
+#####   请求参数：  
+```
+body：susUser对象（对象中只需传userName  userPass这两个参数）
+参数：codeStr 验证码
+```  
+method: post
+  
+#####   返回格式：  
+```
+
+```  
+***  
 ##### 1.登录(login)
 *接口地址*： /oauth/token <br />
 *接口描述*： 用户登录接口
