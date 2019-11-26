@@ -14,8 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -111,8 +113,16 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
      */
     @Override
     public Boolean saveMenu(SysMenu sysMenu) {
+        String userName = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (null != sysMenu.getMenuName()) {
-            return this.save(sysMenu);
+            if (!Objects.equals("", userName)) {
+                sysMenu.setDelFlag("0");
+                sysMenu.setCreateBy(userName);
+                sysMenu.setCreateTime(LocalDateTime.now());
+                return this.save(sysMenu);
+            } else {
+                return false;
+            }
         }
         return Boolean.FALSE;
     }
@@ -120,7 +130,14 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     @Override
     public Boolean editMenu(SysMenu sysMenu) {
         if (null != sysMenu.getId() && null != sysMenu.getMenuName()) {
-            return this.updateById(sysMenu);
+            String userName = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            if (!Objects.equals("", userName)) {
+                sysMenu.setUpdateBy(userName);
+                sysMenu.setUpdateTime(LocalDateTime.now());
+                return this.updateById(sysMenu);
+            } else {
+                return false;
+            }
         }
         return Boolean.FALSE;
     }

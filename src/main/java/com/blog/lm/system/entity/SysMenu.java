@@ -64,7 +64,7 @@ public class SysMenu implements Serializable {
      * 删除状态：1删除，0未删除
      */
     @TableLogic
-    private String delFlag;
+    private String delFlag="0";
 
     /**
      * 创建人用户名
