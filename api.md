@@ -347,6 +347,111 @@ method: delete
 }
 ```  
 ***  
+##### 14.角色分页列表
+*接口地址*： /role/page <br />
+*接口描述*：获取角色分页列表<br />
+*接口权限标识*：role_page
+#####请求头设置
+```
+Authorization   Bearer eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJsbSIsInN1YiI6InJvb3QiLCJpYXQiOjE1NzM3MDI2MTcsImV4cCI6MTU3MzcwNjIxN30.erHYeGiyPpD3177dy8Ow9PEcMY4i5F5pRLRcQQJ-FqUy8TligjGL-sa9lzKiw9sqPelu293EtFqlM-q-p4Qseg
+```
+#####   请求参数：  
+```
+```  
+method: get
+  
+#####   返回格式：  
+```json  
+{
+、、、
+}
+```  
+*** 
+##### 15.通过id获取角色
+*接口地*： /role/id <br />
+*接口描述*：获取角色 <br />
+*接口权限标识*：get_role
+#####请求头设置
+```
+Authorization   Bearer eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJsbSIsInN1YiI6InJvb3QiLCJpYXQiOjE1NzM3MDI2MTcsImV4cCI6MTU3MzcwNjIxN30.erHYeGiyPpD3177dy8Ow9PEcMY4i5F5pRLRcQQJ-FqUy8TligjGL-sa9lzKiw9sqPelu293EtFqlM-q-p4Qseg
+```
+#####   请求参数：  
+```
+id 路径参数
+```  
+method: get
+  
+#####   返回格式：  
+```json  
+{
+、、、
+}
+```  
+***  
+##### 16.添加角色
+*接口地*： /role <br />
+*接口描述*：添加角色 <br />
+*接口权限标识*：add_role
+#####请求头设置
+```
+Authorization   Bearer eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJsbSIsInN1YiI6InJvb3QiLCJpYXQiOjE1NzM3MDI2MTcsImV4cCI6MTU3MzcwNjIxN30.erHYeGiyPpD3177dy8Ow9PEcMY4i5F5pRLRcQQJ-FqUy8TligjGL-sa9lzKiw9sqPelu293EtFqlM-q-p4Qseg
+```
+#####   请求参数：  
+```
+sysRole
+```  
+method: post
+  
+#####   返回格式：  
+```json  
+{
+、、、
+}
+```  
+***  
+##### 17.修改角色
+*接口地*： /role <br />
+*接口描述*：修改角色和给角色赋权两个功能合并，都在修改角色是进行修改 <br />
+*接口权限标识*：edit_role
+#####请求头设置
+```
+Authorization   Bearer eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJsbSIsInN1YiI6InJvb3QiLCJpYXQiOjE1NzM3MDI2MTcsImV4cCI6MTU3MzcwNjIxN30.erHYeGiyPpD3177dy8Ow9PEcMY4i5F5pRLRcQQJ-FqUy8TligjGL-sa9lzKiw9sqPelu293EtFqlM-q-p4Qseg
+```
+#####   请求参数：  
+```
+sysRole 角色实体
+Integer[] menuIds 修改后角色拥有的菜单id
+```  
+method: put
+  
+#####   返回格式：  
+```json  
+{
+、、、
+}
+```  
+***  
+##### 18.删除角色
+*接口地*： /role/id <br />
+*接口描述*：删除角色 <br />
+*接口权限标识*：delete_role
+#####请求头设置
+```
+Authorization   Bearer eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJsbSIsInN1YiI6InJvb3QiLCJpYXQiOjE1NzM3MDI2MTcsImV4cCI6MTU3MzcwNjIxN30.erHYeGiyPpD3177dy8Ow9PEcMY4i5F5pRLRcQQJ-FqUy8TligjGL-sa9lzKiw9sqPelu293EtFqlM-q-p4Qseg
+```
+#####   请求参数：  
+```
+id 路径参数
+```  
+method: delete
+  
+#####   返回格式：  
+```json  
+{
+、、、
+}
+```  
+*** 
 
 
 
