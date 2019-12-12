@@ -4,11 +4,13 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import org.mockito.stubbing.ValidableAnswer;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -23,66 +25,40 @@ public class Image implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    /**
-     * ID
-     */
     @TableId(value = "id", type = IdType.AUTO)
+    @ApiModelProperty(value = "主键id")
     private Long id;
 
-    /**
-     * 用户id
-     */
+    @ApiModelProperty(value = "用户id")
     private Integer userId;
 
-    /**
-     * 文章id
-     */
+    @ApiModelProperty(value = "文章id")
     private Integer postId;
 
-    /**
-     * 图片名称
-     */
+    @ApiModelProperty(value = "图片名称")
     private String imgName;
 
-    /**
-     * 类型: 1、公共资源2、博客文章3、用户资源
-     */
+    @ApiModelProperty(value = "类型: 1、公共资源2、博客文章3、用户资源")
     private String imgType;
 
-    /**
-     * 图片路径
-     */
+    @ApiModelProperty(value = "图片路径")
     private String imgUrl;
-
-    /**
-     * 图片后缀
-     */
+    @ApiModelProperty(value = "图片后缀")
     private String suffix;
 
-    /**
-     * 图片大小
-     */
+    @ApiModelProperty(value = "图片大小")
     private Long size;
-
-    /**
-     * 图片宽度
-     */
+    @ApiModelProperty(value = "图片宽度")
     private Double width;
 
-    /**
-     * 图片高度
-     */
+    @ApiModelProperty(value = "图片高度")
     private Double height;
 
-    /**
-     * 0正常 1删除
-     */
     @TableLogic
+    @ApiModelProperty(value = "0正常 1删除")
     private String delFlg;
 
-    /**
-     * 上传时间
-     */
+    @ApiModelProperty(value = "上传时间")
     private LocalDateTime createTime;
 
 

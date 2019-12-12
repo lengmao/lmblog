@@ -4,6 +4,9 @@ package com.blog.lm.system.controller;
 import com.blog.lm.system.entity.SysMenu;
 import com.blog.lm.system.service.SysMenuService;
 import com.blog.lm.common.result.JsonResult;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2019-11-06
  */
 @RestController
+@Api(tags = "菜单")
 public class SysMenuController {
 
     @Autowired
@@ -24,6 +28,7 @@ public class SysMenuController {
      * @return
      */
     @GetMapping("/api/menuTree")
+    @ApiOperation(value = "获取未登录菜单树", notes = "获取未登录菜单树")
     public JsonResult getMenuTree() {
         return new JsonResult(menuService.getMenuTree());
     }
@@ -34,6 +39,7 @@ public class SysMenuController {
      */
     @GetMapping("/menu/userMenuTree")
     @PreAuthorize("@pms.hasPermission('get_user_menu')")
+    @ApiOperation(value = "获取登录状态用户的菜单树", notes = "获取登录状态用户的菜单树")
     public JsonResult getUserMenuTree(){
         return new JsonResult(menuService.getUserMenuTree());
     }
@@ -55,7 +61,8 @@ public class SysMenuController {
      */
     @GetMapping("/menu/roleMenuTree/{roleId}")
     @PreAuthorize("@pms.hasPermission('edit_role')")
-    public JsonResult getMenuTreeByRoleId(@PathVariable Integer roleId){
+    @ApiOperation(value = "通过角色ID获取角色资源", notes = "通过角色ID获取角色资源")
+    public JsonResult getMenuTreeByRoleId(@ApiParam(name ="roleId",value = "角色id",required = true) @PathVariable Integer roleId){
         return new JsonResult(menuService.getMenuTreeByRoleId(roleId));
     }
     /**

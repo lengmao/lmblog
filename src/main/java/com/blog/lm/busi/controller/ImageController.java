@@ -7,6 +7,8 @@ import com.blog.lm.common.result.JsonResult;
 import com.blog.lm.common.result.ResultCode;
 import com.blog.lm.util.MinioUtil;
 import io.minio.errors.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +32,7 @@ import java.time.ZoneId;
 @RestController
 @RequestMapping("/busiImage")
 @AllArgsConstructor
+@Api(tags="文件上传")
 public class ImageController {
     @Autowired
     private UploadService UploadService;
@@ -43,6 +46,7 @@ public class ImageController {
      * @return
      */
     @PostMapping("/uploadImage")
+    @ApiOperation("上传图片")
     public JsonResult uploadImage(MultipartFile file, @RequestParam("type") String type, @RequestParam(value = "postId",required = false) Integer postId, @RequestParam(value = "userId",required = false) Integer userId){
         try {
             if (file.isEmpty()){

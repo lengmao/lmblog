@@ -1,6 +1,8 @@
 package com.blog.lm.busi.config;
 
+import com.github.xiaoymin.swaggerbootstrapui.annotations.EnableSwaggerBootstrapUI;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -12,8 +14,6 @@ import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.SecurityScheme;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spi.service.contexts.DocumentationContextBuilder;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
@@ -25,13 +25,15 @@ import static springfox.documentation.spi.DocumentationType.SWAGGER_2;
 
 @Configuration
 @EnableSwagger2
+@EnableSwaggerBootstrapUI
+@ConditionalOnClass(SwaggerConfig.class)
 public class SwaggerConfig implements WebMvcConfigurer {
 
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
-//        registry.addResourceHandler("doc.html").addResourceLocations("classpath:/META-INF/resources/");
-//        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
-//    }
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("doc.html").addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+    }
 
     @Bean
     public Docket createRestApi() {
@@ -49,7 +51,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
 
     @Bean
     SecurityScheme securityScheme() {
-        return new ApiKey(TOKEN_PREFIX, TOKEN_HEADER, "header");
+        return new ApiKey(TOKEN_HEADER, TOKEN_HEADER, "header");
     }
     //构建 api文档的详细信息函数,注意这里的注解引用的是哪个
     private ApiInfo apiInfo() {

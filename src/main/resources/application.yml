@@ -63,6 +63,10 @@ logging:
     org:
       springframework:
         security: DEBUG
-
-
+swagger:
+  production: false
+  basic:
+    enable: true
+    username: admin
+    password: admin
 
