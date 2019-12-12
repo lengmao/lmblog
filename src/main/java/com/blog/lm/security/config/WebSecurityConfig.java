@@ -34,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/oauth/**", "/api/**",API_PATH,"/webjars/**","/swagger-resources/**","/v2/**").permitAll()
+                .antMatchers("/oauth/**", "/api/**",API_PATH,"/webjars/**","/swagger-resources/**","/v2/**","/doc.html").permitAll()
                 .anyRequest().authenticated()
                 .and().exceptionHandling().authenticationEntryPoint(authEntryPointHandle).accessDeniedHandler(authEntryPointHandle)
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

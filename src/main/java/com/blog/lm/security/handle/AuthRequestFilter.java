@@ -46,12 +46,12 @@ public class AuthRequestFilter extends OncePerRequestFilter {
         String header = request.getHeader(AuthTokenEndpoint.TOKEN_HEADER);
         if (header == null || !header.startsWith(AuthTokenEndpoint.TOKEN_PREFIX)) {
             String url = request.getRequestURI();
-            if (url.startsWith(DEFAULT_CODE_PATH)||url.equals(API_PATH)||url.startsWith(STATIC_PATH)||url.startsWith(RESOURCES_PATH)||url.startsWith(V2_PATH)) {
+            if (url.startsWith(DEFAULT_CODE_PATH)||url.equals(API_PATH)||url.startsWith(STATIC_PATH)||url.startsWith(RESOURCES_PATH)||url.startsWith(V2_PATH)||url.equals("/doc.html")) {
                 chain.doFilter(request, response);
                 return;
             } else {
                 try {
-                    if (!url.startsWith(STATIC_PATH)||!url.equals(API_PATH)||!url.startsWith(RESOURCES_PATH)||!url.startsWith(V2_PATH)){
+                    if (!url.startsWith(STATIC_PATH)||!url.equals(API_PATH)||!url.startsWith(RESOURCES_PATH)||!url.startsWith(V2_PATH)||!url.equals("/doc.html")){
                         validate(request.getParameter("codeStr"));
                     }
                     chain.doFilter(request, response);
