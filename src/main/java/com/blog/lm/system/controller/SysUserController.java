@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.blog.lm.system.entity.SysUser;
 import com.blog.lm.system.service.SysUserService;
 import com.blog.lm.common.result.JsonResult;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2019-11-06
  */
 @RestController
+@Api(description = "用户操作接口")
 public class SysUserController {
 
     @Autowired
@@ -29,6 +32,7 @@ public class SysUserController {
      * @return
      */
     @GetMapping("/user/page")
+    @ApiOperation(value = "用户分页查询", notes="分页查询所有用户")
     @PreAuthorize("@pms.hasPermission('user_page')")
     public JsonResult userPage(Page<SysUser> page, SysUser sysUser) {
         return new JsonResult(userService.userPage(page, sysUser));
