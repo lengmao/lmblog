@@ -14,6 +14,8 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import static com.blog.lm.security.handle.AuthRequestFilter.API_PATH;
+
 /**
  * @Author xus
  * @Date 2019/11/6 13:54
@@ -32,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/oauth/**", "/api/**").permitAll()
+                .antMatchers("/oauth/**", "/api/**",API_PATH,"/webjars/**","/swagger-resources/**","/v2/**").permitAll()
                 .anyRequest().authenticated()
                 .and().exceptionHandling().authenticationEntryPoint(authEntryPointHandle).accessDeniedHandler(authEntryPointHandle)
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
