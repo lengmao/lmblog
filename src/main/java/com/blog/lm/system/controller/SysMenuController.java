@@ -50,6 +50,7 @@ public class SysMenuController {
      */
     @GetMapping("/menu/allMenuTree")
     @PreAuthorize("@pms.hasPermission('edit_role')")
+    @ApiOperation(value = "此接口旨在管理员修改角色权限时获取所有菜单", notes = "此接口旨在管理员修改角色权限时获取所有菜单")
     public JsonResult getAllMenuTree(){
         return new JsonResult(menuService.getAllMenuTree());
     }
@@ -71,7 +72,8 @@ public class SysMenuController {
      */
     @PostMapping("/menu")
     @PreAuthorize("@pms.hasPermission('add_menu')")
-    public JsonResult saveMenu(@RequestBody SysMenu sysMenu) {
+    @ApiOperation(value = "添加菜单", notes = "添加菜单")
+    public JsonResult saveMenu(@ApiParam(required = true,name ="sysMenu",value = "菜单实体类")@RequestBody SysMenu sysMenu) {
         return new JsonResult(menuService.saveMenu(sysMenu));
     }
 
@@ -82,14 +84,16 @@ public class SysMenuController {
      */
     @PutMapping("/menu")
     @PreAuthorize("@pms.hasPermission('edit_menu')")
-    public JsonResult editMenu(@RequestBody SysMenu sysMenu){
+    @ApiOperation(value = "修改菜单", notes = "修改菜单")
+    public JsonResult editMenu(@ApiParam(required = true,name ="sysMenu",value = "菜单实体类")@RequestBody SysMenu sysMenu){
         return new JsonResult(menuService.editMenu(sysMenu));
     }
 
 
     @DeleteMapping("/menu/{id}")
     @PreAuthorize("@pms.hasPermission('delete_menu')")
-    public JsonResult deleteMenu(@PathVariable Integer id){
+    @ApiOperation(value = "根据菜单id删除菜单", notes = "根据菜单id删除菜单")
+    public JsonResult deleteMenu(@ApiParam(required = true,name ="id",value = "菜单id")@PathVariable Integer id){
         return new JsonResult(menuService.deleteMenu(id));
     }
 

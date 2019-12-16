@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.io.Serializable;
 
 import com.baomidou.mybatisplus.annotation.TableLogic;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
@@ -21,51 +22,34 @@ public class SysRole implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    /**
-     * ID
-     */
+
+    @ApiModelProperty(value ="主键" )
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    /**
-     * 角色名称
-     */
+    @ApiModelProperty(value ="角色名称" )
     private String role;
 
-    /**
-     * 用户编码
-     */
+    @ApiModelProperty(value ="用户编码" )
     private String roleCode;
 
-    /**
-     * 描述
-     */
+    @ApiModelProperty(value ="描述" )
     private String description;
 
-    /**
-     * 1删除，0未删除
-     */
     @TableLogic
+    @ApiModelProperty(value ="1删除，0未删除" )
     private String delFlag;
 
-    /**
-     * 创建人
-     */
+    @ApiModelProperty(value ="创建人" )
     private String createBy;
 
-    /**
-     * 创建时间
-     */
+    @ApiModelProperty(value ="创建时间" )
     private LocalDateTime createTime;
 
-    /**
-     * 修改人
-     */
+    @ApiModelProperty(value ="修改人" )
     private String updateBy;
 
-    /**
-     * 修改时间
-     */
+    @ApiModelProperty(value ="修改时间" )
     private LocalDateTime updateTime;
 
 

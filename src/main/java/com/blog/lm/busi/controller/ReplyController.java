@@ -5,6 +5,8 @@ import com.blog.lm.busi.entity.Reply;
 import com.blog.lm.busi.service.ReplyService;
 import com.blog.lm.common.result.JsonResult;
 import com.blog.lm.common.result.ResultCode;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,12 +24,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/busiReply")
 @AllArgsConstructor
+@Api(tags = "回复")
 public class ReplyController {
     private final ReplyService replyService;
     /**
      * 回复
      */
     @PostMapping("/innsertReply")
+    @ApiOperation(value = "回复", notes="回复")
     public JsonResult innsertReply(@RequestBody Reply reply){
         if (reply==null){
             return new JsonResult(Boolean.FALSE, ResultCode.PARAM_IS_BLANK);

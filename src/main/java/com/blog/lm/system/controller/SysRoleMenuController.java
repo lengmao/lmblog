@@ -1,6 +1,7 @@
 package com.blog.lm.system.controller;
 
 
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Controller;
  */
 @Controller
 @RequestMapping("/sysRoleMenu")
+@Api(tags="角色权限表")
 public class SysRoleMenuController {
 
 }

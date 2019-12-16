@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2019-11-06
  */
 @RestController
-@Api(description = "用户操作接口")
+@Api(tags = "用户操作接口")
 public class SysUserController {
 
     @Autowired

@@ -6,6 +6,8 @@ import com.blog.lm.busi.entity.Comment;
 import com.blog.lm.busi.service.CommentService;
 import com.blog.lm.common.result.JsonResult;
 import com.blog.lm.common.result.ResultCode;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/comment")
 @AllArgsConstructor
+@Api(tags = "评论")
 public class CommentController {
     private final CommentService commentService;
 
@@ -27,6 +30,7 @@ public class CommentController {
      * @return
      */
     @GetMapping("/getCommentByPostId")
+    @ApiOperation(value = "根据文章id查询所有评论", notes="根据文章id查询所有评论")
         public JsonResult getCommentByPostId(Page page,@RequestParam("postId") Integer postId){
             return new JsonResult(Boolean.TRUE, ResultCode.SUCCESS,commentService.getCommentByPostId(page,postId));
         }
@@ -37,6 +41,7 @@ public class CommentController {
      * @return
      */
     @PostMapping("/insertComment")
+    @ApiOperation(value = "评论文章", notes="评论文章")
         public JsonResult insertComment(@RequestBody Comment comment){
         if (comment==null){
             return new JsonResult(Boolean.FALSE,ResultCode.PARAM_IS_BLANK);
@@ -56,6 +61,7 @@ public class CommentController {
      * @return
      */
     @DeleteMapping("/delComment")
+    @ApiOperation(value = "删除评论", notes="删除评论")
         public JsonResult delComment(Integer commentId){
         return commentService.delComment(commentId);
         }

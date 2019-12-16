@@ -1,6 +1,8 @@
 package com.blog.lm.system.entity;
 
 import java.io.Serializable;
+
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
@@ -17,19 +19,13 @@ public class SysRoleMenu implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    /**
-     * ID
-     */
+    @ApiModelProperty(value ="主键" )
     private Integer id;
 
-    /**
-     * 角色Id
-     */
+    @ApiModelProperty(value ="角色Id" )
     private Integer roleId;
 
-    /**
-     * 菜单Id
-     */
+    @ApiModelProperty(value ="菜单Id" )
     private Integer menuId;
 
 

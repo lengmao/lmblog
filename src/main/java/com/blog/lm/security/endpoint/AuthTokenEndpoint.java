@@ -3,6 +3,8 @@ package com.blog.lm.security.endpoint;
 
 import cn.hutool.core.util.StrUtil;
 import com.blog.lm.common.result.JsonResult;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
  **/
 @RestController
 @RequestMapping("/token")
+@Api(tags = "操作token")
 public class AuthTokenEndpoint {
 
     public static final String TOKEN_HEADER = "Authorization";
@@ -35,6 +38,7 @@ public class AuthTokenEndpoint {
      * @return
      */
     @DeleteMapping("/logout")
+    @ApiOperation(value = "退出登录,删除token", notes="退出登录,删除token")
     public JsonResult logout(@RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) String authHeader) {
         if (StrUtil.isBlank(authHeader)) {
             return new JsonResult("退出失败，token为空");
