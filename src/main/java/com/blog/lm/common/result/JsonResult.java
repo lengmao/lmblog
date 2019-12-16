@@ -1,5 +1,7 @@
 package com.blog.lm.common.result;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -10,11 +12,15 @@ import java.io.Serializable;
  * @Description TODO
  **/
 @Data
+@ApiModel(value="接口返回对象", description="接口返回对象")
 public class JsonResult<T> implements Serializable {
-
+    @ApiModelProperty(value = "成功标志")
     private Boolean success;
+    @ApiModelProperty(value = "返回代码")
     private Integer code;
+    @ApiModelProperty(value = "返回处理消息")
     private String msg;
+    @ApiModelProperty(value = "返回数据对象")
     private T data;
 
     public JsonResult() {

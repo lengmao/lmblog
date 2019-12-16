@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -25,56 +26,36 @@ public class Reply implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    /**
-     * ID
-     */
+    @ApiModelProperty(value ="主键" )
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    /**
-     * 评论id
-     */
+    @ApiModelProperty(value ="评论id" )
     private Integer commentId;
 
-    /**
-     * 回复目标id
-     */
+    @ApiModelProperty(value ="回复目标id" )
     private Integer replyId;
 
-    /**
-     * 回复类型 1 针对评论回复 2 针对回复回复
-     */
+    @ApiModelProperty(value ="回复类型 1 针对评论回复 2 针对回复回复" )
     private Integer replyType;
 
-    /**
-     * 回复内容
-     */
+    @ApiModelProperty(value ="回复内容" )
     private String replyContent;
 
-    /**
-     * 回复用户id
-     */
+    @ApiModelProperty(value ="回复用户id" )
     private Integer fromUid;
 
-    /**
-     * 目标用户id
-     */
+    @ApiModelProperty(value ="目标用户id" )
     private Integer toUid;
 
-    /**
-     * 0-已审核 1-待审核  2-未审核
-     */
+    @ApiModelProperty(value ="0-已审核 1-待审核  2-未审核" )
     private String replyStatus;
 
-    /**
-     * 回复时间
-     */
+    @ApiModelProperty(value ="回复时间" )
     private LocalDateTime createTime;
 
-    /**
-     * 0正常 2删除
-     */
     @TableLogic
+    @ApiModelProperty(value ="0正常 2删除" )
     private String delFlag;
 
 

@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.io.Serializable;
 
 import com.baomidou.mybatisplus.annotation.*;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -19,52 +20,33 @@ public class Comment implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    /**
-     * ID
-     */
+    @ApiModelProperty(value ="主键" )
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    /**
-     * 评论所属文章id
-     */
+    @ApiModelProperty(value ="评论所属文章id" )
     private Integer postId;
 
-    /**
-     * 发布评论用户id
-     */
+    @ApiModelProperty(value ="发布评论用户id" )
     private Integer fromUid;
 
-    /**
-     * 评论内容
-     */
+    @ApiModelProperty(value ="评论内容" )
     private String commentContent;
 
-
-    /**
-     * 评论状态 0-正常 1-待审核
-     */
+    @ApiModelProperty(value ="评论状态 0-正常 1-待审核" )
     private String commentStatus;
 
-    /**
-     * 评论类型 0-匿名 1-登录者
-     */
+    @ApiModelProperty(value ="评论类型 0-匿名 1-登录者" )
     private String commentType;
 
-    /**
-     * 创建时间
-     */
+    @ApiModelProperty(value ="创建时间" )
     private LocalDateTime createTime;
 
-    /**
-     * 逻辑删除标记 0-正常 1-删除
-     */
+    @ApiModelProperty(value ="逻辑删除标记 0-正常 1-删除" )
     @TableLogic
     private String delFlag;
 
-    /**
-     * 备注信息
-     */
+    @ApiModelProperty(value ="备注信息" )
     private String remarks;
 
 }
