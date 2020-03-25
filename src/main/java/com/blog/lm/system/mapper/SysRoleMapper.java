@@ -26,7 +26,7 @@ public interface SysRoleMapper extends BaseMapper<SysRole> {
      * @param sysRole
      * @return
      */
-    IPage rolePage(Page<SysRole> page, @Param("sysRole") SysRole sysRole);
+    IPage rolePage(Page<SysRole> page, @Param("role") SysRole sysRole);
     /**
      * 通过用户ID查询用户所有角色
      * @param userId

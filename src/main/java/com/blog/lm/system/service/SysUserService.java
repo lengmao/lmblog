@@ -76,4 +76,5 @@ public interface SysUserService extends IService<SysUser> {
      * @return
      */
     Boolean registerUser(SysUser sysUser, String imageCode) throws Exception;
+
 }

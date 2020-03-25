@@ -3,7 +3,7 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
+    username: xusheng
     password: xusheng#
     url: jdbc:mysql://39.107.32.198:3306/lmblog?useUnicode=true&useSSL=false&characterEncoding=utf8
     hikari:
@@ -22,7 +22,8 @@ spring:
     cache: false
   redis:
     port: 6379
-    host: 106.12.99.45
+    host: 39.107.32.198
+    password: 123456
     database: 2
 
 #server-port

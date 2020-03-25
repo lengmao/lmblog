@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * 用户模块接口
  *
@@ -32,7 +34,7 @@ public class SysUserController {
      * @return
      */
     @GetMapping("/user/page")
-    @ApiOperation(value = "用户分页查询", notes="分页查询所有用户")
+    @ApiOperation(value = "用户分页查询", notes = "分页查询所有用户")
     @PreAuthorize("@pms.hasPermission('user_page')")
     public JsonResult userPage(Page<SysUser> page, SysUser sysUser) {
         return new JsonResult(userService.userPage(page, sysUser));
@@ -48,6 +50,11 @@ public class SysUserController {
     @PreAuthorize("@pms.hasPermission('get_user')")
     public JsonResult getUserById(@PathVariable Integer id) {
         return new JsonResult(userService.getById(id));
+    }
+
+    @GetMapping("/user/token")
+    public JsonResult getUserByToken() {
+        return new JsonResult(userService.getCurrentUser());
     }
 
     /**

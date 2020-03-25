@@ -12,10 +12,10 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 public class GeneratorUtil {
     private static final String targetDir = "E:\\generator";
     private static final String driverName = "com.mysql.cj.jdbc.Driver";
-    private static final String url = "jdbc:mysql://106.12.99.45:33306/lmblog?useUnicode=true&useSSL=false&characterEncoding=utf8";
+    private static final String url = "jdbc:mysql://120.25.144.165:3306/datamanage_v1?useUnicode=true&useSSL=false&characterEncoding=utf8";
     private static final String username = "root";
-    private static final String password = "123456";
-    private static String[] tables = new String[]{"busi_reply"};
+    private static final String password = "toor";
+    private static String[] tables = new String[]{"db_backup_file"};
 
     public static void main(String[] args) {
         //全局配置
@@ -52,7 +52,7 @@ public class GeneratorUtil {
                 .setInclude(tables); // 生成的表,可同时传入多个表名
         //包名策略配置
         PackageConfig packageConfig = new PackageConfig();
-        packageConfig.setParent("com.blog.lm.busi")
+        packageConfig.setParent("com.mtax.dm")
                 .setMapper("mapper")
                 .setService("service")
                 .setController("controller")
