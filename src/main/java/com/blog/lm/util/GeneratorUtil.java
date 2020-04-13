@@ -15,7 +15,7 @@ public class GeneratorUtil {
     private static final String url = "jdbc:mysql://120.25.144.165:3306/datamanage_v1?useUnicode=true&useSSL=false&characterEncoding=utf8";
     private static final String username = "root";
     private static final String password = "toor";
-    private static String[] tables = new String[]{"db_backup_file"};
+    private static String[] tables = new String[]{"sys_role_interface"};
 
     public static void main(String[] args) {
         //全局配置
