@@ -24,7 +24,7 @@
                  LEFT JOIN sys_role_menu rm ON m.id = rm.menu_id
         WHERE m.del_flag = 0
           AND rm.role_id = #{roleId}
-        ORDER BY m.id
+        ORDER BY m.id ASC
     </select>
 
 </mapper>

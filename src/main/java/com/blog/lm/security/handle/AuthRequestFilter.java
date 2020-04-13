@@ -31,7 +31,7 @@ import java.util.ArrayList;
  **/
 @Component
 public class AuthRequestFilter extends OncePerRequestFilter {
-    private final String DEFAULT_CODE_PATH = "/api";
+    private final String DEFAULT_CODE_PATH = "/admin/api";
     @Autowired
     TokenStore tokenStore;
     @Autowired

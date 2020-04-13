@@ -12,10 +12,10 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 public class GeneratorUtil {
     private static final String targetDir = "E:\\generator";
     private static final String driverName = "com.mysql.cj.jdbc.Driver";
-    private static final String url = "jdbc:mysql://106.12.99.45:33306/lmblog?useUnicode=true&useSSL=false&characterEncoding=utf8";
+    private static final String url = "jdbc:mysql://39.107.32.198:3306/mtax_web02?useUnicode=true&useSSL=false&characterEncoding=utf8";
     private static final String username = "root";
-    private static final String password = "123456";
-    private static String[] tables = new String[]{"busi_reply"};
+    private static final String password = "xusheng#";
+    private static String[] tables = new String[]{"user_order"};
 
     public static void main(String[] args) {
         //全局配置

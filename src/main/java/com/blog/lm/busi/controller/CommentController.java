@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2019-11-12
  */
 @RestController
-@RequestMapping("/comment")
+@RequestMapping("/admin/comment")
 @AllArgsConstructor
 public class CommentController {
     private final CommentService commentService;

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2019-11-06
  */
 @RestController
-@RequestMapping("/role")
+@RequestMapping("/admin/role")
 public class SysRoleController {
 
     @Autowired

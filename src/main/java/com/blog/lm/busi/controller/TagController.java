@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2019-11-12
  */
 @RestController
+@RequestMapping("/admin")
 public class TagController {
 
     @Autowired

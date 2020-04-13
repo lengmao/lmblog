@@ -28,7 +28,7 @@ import java.time.ZoneId;
  * @Description TODO
  **/
 @RestController
-@RequestMapping("/busiImage")
+@RequestMapping("/admin/busiImage")
 @AllArgsConstructor
 public class ImageController {
     @Autowired

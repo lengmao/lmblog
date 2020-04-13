@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/oauth/**", "/api/**").permitAll()
+                .antMatchers("/oauth/**", "/admin/api/**").permitAll()
                 .anyRequest().authenticated()
                 .and().exceptionHandling().authenticationEntryPoint(authEntryPointHandle).accessDeniedHandler(authEntryPointHandle)
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

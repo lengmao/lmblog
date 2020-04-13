@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2019-11-13
  */
 @RestController
-@RequestMapping("/busiReply")
+@RequestMapping("/admin/busiReply")
 @AllArgsConstructor
 public class ReplyController {
     private final ReplyService replyService;

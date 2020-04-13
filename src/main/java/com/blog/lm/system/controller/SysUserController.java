@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2019-11-06
  */
 @RestController
+@RequestMapping("/admin")
 public class SysUserController {
 
     @Autowired
