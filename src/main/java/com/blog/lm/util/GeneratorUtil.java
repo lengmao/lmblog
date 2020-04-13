@@ -52,7 +52,7 @@ public class GeneratorUtil {
                 .setInclude(tables); // 生成的表,可同时传入多个表名
         //包名策略配置
         PackageConfig packageConfig = new PackageConfig();
-        packageConfig.setParent("com.blog.lm.busi")
+        packageConfig.setParent("com.mtax.dm")
                 .setMapper("mapper")
                 .setService("service")
                 .setController("controller")

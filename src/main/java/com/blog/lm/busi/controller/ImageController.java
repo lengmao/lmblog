@@ -7,6 +7,9 @@ import com.blog.lm.common.result.JsonResult;
 import com.blog.lm.common.result.ResultCode;
 import com.blog.lm.util.MinioUtil;
 import io.minio.errors.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +33,7 @@ import java.time.ZoneId;
 @RestController
 @RequestMapping("/admin/busiImage")
 @AllArgsConstructor
+@Api(tags="文件上传")
 public class ImageController {
     @Autowired
     private UploadService UploadService;
@@ -43,7 +47,8 @@ public class ImageController {
      * @return
      */
     @PostMapping("/uploadImage")
-    public JsonResult uploadImage(MultipartFile file, @RequestParam("type") String type, @RequestParam(value = "postId",required = false) Integer postId, @RequestParam(value = "userId",required = false) Integer userId){
+    @ApiOperation(value = "上传图片", notes="上传图片")
+    public JsonResult uploadImage(MultipartFile file, @ApiParam(required = true,name ="type",value = "图片类型") @RequestParam("type") String type,@ApiParam(name ="postId",value = "博客id") @RequestParam(value = "postId",required = false) Integer postId,@ApiParam(name = "userId",value = "用户id") @RequestParam(value = "userId",required = false) Integer userId){
         try {
             if (file.isEmpty()){
                 return new JsonResult(Boolean.FALSE, ResultCode.PARAM_NOT_COMPLETE);
@@ -86,8 +91,9 @@ public class ImageController {
      * @param type 不传 默认为逻辑删除 1 为真实删除
      * @return
      */
+    @ApiOperation(value = "删除图片", notes="删除图片")
     @DeleteMapping("/delImageById")
-    public JsonResult delImageById(@RequestParam("id") Integer id,@RequestParam(value = "type",required = false) String type){
+    public JsonResult delImageById(@ApiParam(required = true,name = "id",value = "图片id")@RequestParam("id") Integer id,@ApiParam(name = "type",value = "不传 默认为逻辑删除 1 为真实删除")@RequestParam(value = "type",required = false) String type){
         if (id==null&&id<0){
             return new JsonResult(Boolean.FALSE,ResultCode.PARAM_NOT_VALID);
         }
@@ -110,6 +116,7 @@ public class ImageController {
      * @throws InternalException
      */
     @PostMapping("/uploadfile")
+    @ApiOperation(value = "上传视频、文件 生成网络链接", notes="上传视频、文件 生成网络链接")
     public String uploadfile(MultipartFile file) throws IOException, XmlPullParserException, NoSuchAlgorithmException, InvalidKeyException, InvalidExpiresRangeException, ErrorResponseException, NoResponseException, InvalidBucketNameException, InsufficientDataException, InternalException {
        return MinioUtil.uploadFile(file);
     }

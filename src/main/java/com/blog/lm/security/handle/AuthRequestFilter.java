@@ -31,7 +31,15 @@ import java.util.ArrayList;
  **/
 @Component
 public class AuthRequestFilter extends OncePerRequestFilter {
+<<<<<<< HEAD
     private final String DEFAULT_CODE_PATH = "/admin/api";
+=======
+    private final String DEFAULT_CODE_PATH = "/api";
+    public static final String API_PATH = "/swagger-ui.html";
+    public static final String STATIC_PATH = "/webjars";
+    public static final String RESOURCES_PATH="/swagger-resources";
+    public static final String V2_PATH="/v2";
+>>>>>>> 50b740b095ffdce939c2b934b3885c4a14b04787
     @Autowired
     TokenStore tokenStore;
     @Autowired
@@ -42,12 +50,14 @@ public class AuthRequestFilter extends OncePerRequestFilter {
         String header = request.getHeader(AuthTokenEndpoint.TOKEN_HEADER);
         if (header == null || !header.startsWith(AuthTokenEndpoint.TOKEN_PREFIX)) {
             String url = request.getRequestURI();
-            if (url.startsWith(DEFAULT_CODE_PATH)) {
+            if (url.startsWith(DEFAULT_CODE_PATH)||url.equals(API_PATH)||url.startsWith(STATIC_PATH)||url.startsWith(RESOURCES_PATH)||url.startsWith(V2_PATH)||url.equals("/doc.html")) {
                 chain.doFilter(request, response);
                 return;
             } else {
                 try {
-                    validate(request.getParameter("codeStr"));
+                    if (!url.startsWith(STATIC_PATH)||!url.equals(API_PATH)||!url.startsWith(RESOURCES_PATH)||!url.startsWith(V2_PATH)||!url.equals("/doc.html")){
+                        validate(request.getParameter("codeStr"));
+                    }
                     chain.doFilter(request, response);
                     return;
                 } catch (Exception e) {

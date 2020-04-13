@@ -1,6 +1,7 @@
 package com.blog.lm.system.controller;
 
 
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Controller;
  */
 @Controller
 @RequestMapping("/sysUserRole")
+@Api( tags="用户角色表")
 public class SysUserRoleController {
 
 }

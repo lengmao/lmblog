@@ -14,6 +14,11 @@ import org.springframework.web.client.RestTemplate;
 @Import(FdfsClientConfig.class)
 @EnableMBeanExport(registration = RegistrationPolicy.IGNORE_EXISTING)
 public class FastDFSConfig {
+    /**
+     * http 模板配置
+     * @param factory
+     * @return
+     */
     @Bean
     public RestTemplate restTemplate(ClientHttpRequestFactory factory) {
         return new RestTemplate(factory);

@@ -2,6 +2,8 @@ package com.blog.lm.system.controller;
 
 import com.blog.lm.common.constant.CommonConstant;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -26,6 +28,7 @@ import java.util.concurrent.TimeUnit;
 @AllArgsConstructor
 @Slf4j
 @RequestMapping("/admin")
+@Api(tags = "验证码接口")
 public class ImageCodeController {
 
     private final DefaultKaptcha defaultKaptcha;
@@ -39,6 +42,7 @@ public class ImageCodeController {
      * @throws IOException
      */
     @GetMapping("/api/code")
+    @ApiOperation(value = "生成验证码", notes="生成验证码")
     public void getCode(HttpServletResponse response) throws IOException {
         byte[] captchaChallengeAsJpeg;
         ByteArrayOutputStream jpegOutputStream = new ByteArrayOutputStream();

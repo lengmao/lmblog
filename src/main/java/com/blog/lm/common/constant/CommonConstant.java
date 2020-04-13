@@ -21,4 +21,6 @@ public interface CommonConstant {
      * 验证码前缀
      */
     String DEFAULT_CODE_KEY = "DEFAULT_CODE_KEY_";
+
+    String AUTHORIZATION = "Authorization";
 }

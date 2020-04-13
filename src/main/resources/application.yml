@@ -1,3 +1,74 @@
 spring:
   profiles:
     active: dev
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: xusheng
+    password: xusheng#
+    url: jdbc:mysql://39.107.32.198:3306/lmblog?useUnicode=true&useSSL=false&characterEncoding=utf8
+    hikari:
+      idle-timeout: 10000
+      minimum-idle: 1
+      maximum-idle: 3
+      maximum-pool-size: 5
+      pool-name: blog_pool
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    cache: false
+  redis:
+    port: 6379
+    host: 39.107.32.198
+    password: 123456
+    database: 2
+
+#server-port
+server:
+  port: 9000
+
+#mybatis-plus
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*Mapper.xml
+  type-aliases-package: com.blog.lm.ststem.entity.**,com.blog.lm.busi.entity.**
+  global-config:
+    banner: false
+    db-config:
+      id-type: 0
+      field-strategy: 1
+      refresh-mapper: true
+      table-underline: true
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#fdfs服务器配置信息
+fdfs:
+  so-timeout:  1501
+  connect-timeout: 601
+  thumb-image:
+    width: 150
+    height: 150
+  tracker-list:
+    #- 106.12.99.45:22122
+    - 122.51.155.126:22122
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+swagger:
+  production: false
+  basic:
+    enable: true
+    username: admin
+    password: admin
+

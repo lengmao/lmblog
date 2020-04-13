@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.baomidou.mybatisplus.annotation.TableLogic;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
@@ -20,86 +21,54 @@ public class SysUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * id
-     */
+    @ApiModelProperty(value ="主键" )
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    /**
-     * 用户名
-     */
+    @ApiModelProperty(value ="用户名" )
     private String userName;
 
-    /**
-     * 显示名称
-     */
+    @ApiModelProperty(value ="显示名称" )
     private String userDisplayName;
 
-    /**
-     * 密码
-     */
+    @ApiModelProperty(value ="密码" )
     private String userPass;
 
-    /**
-     * 邮箱
-     */
+    @ApiModelProperty(value ="邮箱" )
     private String userEmail;
 
-    /**
-     * 头像
-     */
+    @ApiModelProperty(value ="头像" )
     private String userAvatar;
 
-    /**
-     * 描述
-     */
+    @ApiModelProperty(value ="描述" )
     private String userDesc;
 
-    /**
-     * 个人主页
-     */
+    @ApiModelProperty(value ="个人主页" )
     private String userSite;
 
-    /**
-     * 最后一次登录时间
-     */
+    @ApiModelProperty(value ="最后一次登录时间" )
     private LocalDateTime loginLast;
 
-    /**
-     * 0-正常，1-禁用
-     */
+    @ApiModelProperty(value ="0-正常，1-禁用" )
     private String status;
 
-    /**
-     * 注册时间
-     */
+    @ApiModelProperty(value ="注册时间" )
     private LocalDateTime createTime;
 
-    /**
-     * 1删除，0未删除
-     */
+    @ApiModelProperty(value ="1删除，0未删除" )
     @TableLogic
     private String delFlag;
 
-    /**
-     * 创建人
-     */
+    @ApiModelProperty(value ="创建人" )
     private String createBy;
 
-    /**
-     * 修改人
-     */
+    @ApiModelProperty(value ="修改人" )
     private String updateBy;
 
-    /**
-     * 修改时间
-     */
+    @ApiModelProperty(value ="修改时间" )
     private LocalDateTime updateTime;
 
-    /**
-     * 用户角色
-     */
+    @ApiModelProperty(value ="用户角色集合" )
     @TableField(exist = false)
     private List<Integer> roles;
 
